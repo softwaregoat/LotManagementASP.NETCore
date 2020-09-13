@@ -1,0 +1,436 @@
+﻿
+@{
+    ViewData["Title"] = "Product Check Point";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Product Check Point</h1>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Product</label>
+    </div>
+    <div class="col-md-2">
+        <select id="P" class="form-control">
+            <option value="value">text</option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Description</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="des" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Lot</label>
+    </div>
+    <div class="col-md-2">
+        <select id="Lot" class="form-control">
+            <option value="value">text</option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Date</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="date" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <table class="table table-borderless table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Time </th>
+                <th scope="col">Check</th>
+                <th scope="col">Date/Act. Time</th>
+                <th scope="col">Mc Running</th>
+                <th scope="col">Carton No</th>
+                <th scope="col">Active Cavities</th>
+                <th scope="col">Shot Weight (g)</th>
+                <th scope="col">Cycle Count</th>
+                <th scope="col">Rejects</th>
+                <th scope="col">Save</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><label class="col-form-label">00:00</label></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td>
+                    <select class="form-control mc-running">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td>
+                    <select class="form-control cavities">
+                        <option value="value">text</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control shot-weight" value="" /></td>
+                <td><input type="text" class="form-control cycle" value="" /></td>
+                <td>
+                    <select class="form-control reject">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input.lot-update').click(function () {
+                if ($(this).prop('checked')) {
+                    var now = new Date();
+                    let log = now.toLocaleString();
+                    $(this).closest('tr').find('input.date-time').val(log);
+                }
+                else {
+                    $(this).closest('tr').find('input.date-time').val('');
+                    window.location.href = "/ProductSetup/Authorisation";
+                }
+            });
+            $('input.save').click(function () {
+                let tr = $(this).closest('tr');
+                if ($(tr).find('input.date-time').val() == '') {
+                    toastr.warning('Date/Cat. Time is empty.');
+                    return;
+                }
+                if ($(tr).find('input.mc-running').val() == '') {
+                    toastr.warning('Mc Running is empty.');
+                    return;
+                }
+                if ($(tr).find('input.carton-no').val() == '') {
+                    toastr.warning('Carton No is empty.');
+                    return;
+                }
+                if ($(tr).find('input.cavities').val() == '') {
+                    toastr.warning('Active Cavities is empty.');
+                    return;
+                }
+                if ($(tr).find('input.shot-weight').val() == '') {
+                    toastr.warning('Shot Weight is empty.');
+                    return;
+                }
+                if ($(tr).find('input.cycle').val() == '') {
+                    toastr.warning('Cycle Count is empty.');
+                    return;
+                }
+                if ($(tr).find('input.reject').val() == '') {
+                    toastr.warning('Rejects is empty.');
+                    return;
+                }
+                //window.location.href = "/Home/JobBagOverview";
+            });
+
+            var timer2 = "0:30";
+            timerDown(timer2);
+            //redirectPage(0.5, "/ProductionControl/ProductCheckpoint");
+        });
+    </script>
+}
+
+

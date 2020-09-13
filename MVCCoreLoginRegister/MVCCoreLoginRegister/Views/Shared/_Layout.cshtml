@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCCoreLoginRegister</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/toastr.min.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVCCoreLoginRegister</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav text-right float-right">
+                        @if (Context.Request.Cookies["Username"] != null)
+                        {
+                            <li class="nav-item">
+                                <a id="manage" class="nav-link text-dark" asp-page="/Account/Login" title="Manage">Hello @(Context.Request.Cookies["Username"])!</a>
+                            </li>
+                            <li class="nav-item">
+                                <form id="logoutForm" class="form-inline" asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        }
+                    </ul>
+                    @if (Context.Request.Cookies["Username"] != null)
+                    {
+                        <ul class="navbar-nav flex-grow-1">
+
+                            <li class="dropdown">
+                                <a href="#" class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production Setup <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="ProductSetup" asp-action="LineClearance">Line Clearance</a></li>
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="ProductSetup" asp-action="Authorisation">Authorisation To Run</a></li>
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="ProductSetup" asp-action="MaterialLot">Material Lot Control</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Production Control<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="ProductionControl" asp-action="ProductCheckpoint">Product Checkpoint</a></li>
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="ProductionControl" asp-action="functionalTest">Functional Test</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Supporting Documentation<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="SupportingDoc" asp-action="ProductDrawing">Product Drawing</a></li>
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="SupportingDoc" asp-action="ProductQISheet">Product Quality Information Sheet</a></li>
+                                    <li><a class="nav-link text-danger" asp-area="" asp-controller="SupportingDoc" asp-action="PackingSpec">Packing Specification</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="DataArchive" asp-action="Index">Data Archive</a>
+                            </li>
+                        </ul>
+                    }
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div style="margin:40px;">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                    <h5>&copy; Name</h5>
+                </div>
+                <div class="col-sm-8">
+                </div>
+                <div class="col-sm-2">
+                    <h5 id="timeout">Exiting Page in </h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/toastr.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

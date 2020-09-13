@@ -1,0 +1,686 @@
+﻿
+@{
+    ViewData["Title"] = "Quality Record";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1 class="text-center">Quality Record</h1>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Checkpoint</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="checkpoint" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Full Cavitation</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="cavitation" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Lot</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="Lot" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-borderless table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Defect </th>
+                    <th scope="col"></th>
+                    <th scope="col">Observation</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 1</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 2</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 3</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 4</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 5</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 6</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 7</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 8</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 9</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 10</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 11</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 12</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-borderless table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Defect </th>
+                    <th scope="col"></th>
+                    <th scope="col">Observation</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 13</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 14</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 15</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 16</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 17</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 18</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 19</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 20</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 21</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 22</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 23</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 24</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-borderless table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Defect </th>
+                    <th scope="col"></th>
+                    <th scope="col">Observation</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 25</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 26</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 27</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 28</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 29</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 30</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 31</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 32</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 33</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 34</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 35</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="form-control defect" value="" /></td>
+                    <td><label class="col-form-label">Cavity 36</label></td>
+                    <td>
+                        <select class="form-control reason">
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control action">
+                            <option value="value">text</option>
+                        </select>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">
+        <input type="button" id="save" value="Save" class="form-control btn btn-primary" />
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input.lot-update').click(function () {
+                if ($(this).prop('checked')) {
+                    var now = new Date();
+                    let log = now.toLocaleString();
+                    $(this).closest('tr').find('input.date-time').val(log);
+                }
+                else {
+                    $(this).closest('tr').find('input.date-time').val('');
+                    window.location.href = "/ProductSetup/Authorisation";
+                }
+            });
+            $('input.save').click(function () {
+                let tr = $(this).closest('tr');
+                if ($(tr).find('input.date-time').val() == '') {
+                    toastr.warning('Date/Cat. Time is empty.');
+                    return;
+                }
+                if ($(tr).find('input.mc-running').val() == '') {
+                    toastr.warning('Mc Running is empty.');
+                    return;
+                }
+                if ($(tr).find('input.carton-no').val() == '') {
+                    toastr.warning('Carton No is empty.');
+                    return;
+                }
+                if ($(tr).find('input.cavities').val() == '') {
+                    toastr.warning('Active Cavities is empty.');
+                    return;
+                }
+                if ($(tr).find('input.shot-weight').val() == '') {
+                    toastr.warning('Shot Weight is empty.');
+                    return;
+                }
+                if ($(tr).find('input.cycle').val() == '') {
+                    toastr.warning('Cycle Count is empty.');
+                    return;
+                }
+                if ($(tr).find('input.reject').val() == '') {
+                    toastr.warning('Rejects is empty.');
+                    return;
+                }
+                //window.location.href = "/Home/JobBagOverview";
+            });
+
+            var timer2 = "0:30";
+            timerDown(timer2);
+            //redirectPage(0.5, "/ProductionControl/ProductCheckpoint");
+        });
+    </script>
+}
+
+

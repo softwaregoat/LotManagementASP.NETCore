@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="text-center">Production Lot Control And Traceability</h1>
+<div class="row">
+    <div class="col-md-4">
+        <figure class="card card-product">
+            <div class="img-wrap">
+                <img src="">
+            </div>
+            <div class="bottom-wrap">
+                <a href="" class="btn btn-sm btn-primary form-control">Order Now</a>
+            </div>
+        </figure>
+    </div>
+    <div class="col-md-4">
+        <figure class="card card-product">
+            <div class="img-wrap">
+                <img src="">
+            </div>
+            <div class="bottom-wrap">
+                <a href="" class="btn btn-sm btn-primary form-control">Order Now</a>
+            </div>
+        </figure>
+        <div class="row">
+            <div class="col-md-5">
+                <a class="btn btn-sm btn-primary form-control" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <a class="btn btn-sm btn-primary form-control" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <figure class="card card-product">
+            <div class="img-wrap">
+                <img src="">
+            </div>
+            <div class="bottom-wrap">
+                <a href="" class="btn btn-sm btn-primary form-control">Order Now</a>
+            </div>
+        </figure>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var timer2 = "10:00";
+            timerDown(timer2);
+            redirectPage(10, "/Account/Logout");
+        });
+    </script>
+}

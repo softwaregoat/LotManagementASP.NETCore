@@ -1,0 +1,499 @@
+﻿@model JobBagOverview
+@{
+    ViewData["Title"] = "JobBagOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Job Bag Overviewy</h1>
+<div class="row" style="margin:50px;">
+    <div class="col-md-2">
+        <select class="form-control" id="Technology" name="Technology">
+            <option>Select Technology</option>
+            @if (Model.Technologies != null)
+            {
+                foreach (var item in Model.Technologies)
+                {
+                    <option value="@item.TechnologyId">@item.TechnologyName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2">
+        <select class="form-control" id="Machine" name="Machine">
+            <option>Select Machine</option>
+            @if (Model.Technologies != null)
+            {
+                @foreach (var item in Model.Machines)
+                {
+                    <option value="@item.MachineId">@item.MachineName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-2">
+        <select class="form-control" id="Lot" name="Lot">
+            <option>Select Lot</option>
+            @if (Model.Technologies != null)
+            {
+                @foreach (var item in Model.Lots)
+                {
+                    <option value="@item.LotId">@item.LotName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h3>Master Data</h3>
+    </div>
+    <div class="col-md-4">
+        <h3>Additional Information</h3>
+    </div>
+    <div class="col-md-4">
+        <h3>Primary Materials</h3>
+    </div>
+</div>
+<br />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="ProductName" class="control-label">ProductName</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="ProductName" type="text" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Des" class="control-label">Description</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Des" type="text" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Tol" class="control-label">Tool</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Tol" type="text" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Cav" class="control-label">Cavities</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Cav" type="number" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Rtq" class="control-label">Run To Quarantine</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Rtq" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Fut" class="control-label">Functional Testing</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Fut" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Sts" class="control-label">Stratified Samples</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Sts" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Ens" class="control-label">Enhanced Sampling</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Ens" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="P1" class="control-label">Polymer 1</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="P1" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="P1q" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="P2" class="control-label">Polymer 2</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="P2" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="P2q" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Mb" class="control-label">Masterbatch</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Mb" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Mbq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Sa" class="control-label">Slip Additive</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Sa" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Saq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Run Data</h3>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <h3>Packaging Materials</h3>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Loq" class="control-label">Lot Size</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Loq" type="number" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Cph" class="control-label">Cartons / Hour</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Cph" type="number" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Pps" class="control-label">Pallets / Shift</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Pps" type="number" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="Loh" class="control-label">Lot Duration</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input id="Loh" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Coc" class="control-label">C of C</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Coc" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Coa" class="control-label">C of A</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Coa" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Spc" class="control-label">SPC</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Spc" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Por" class="control-label">Positive Release</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <input id="Por" type="checkbox" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Pa" class="control-label">Pallet</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Pa" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Paq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Ca" class="control-label">Carton</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Ca" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Caq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="Cl" class="control-label">Carton Liner</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Cl" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="Clq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="lb" class="control-label">Inner Bag</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="lb" type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4">
+                        <input id="lbq" type="number" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script>
+            $(document).ready(function () {
+                let Technology = getCookie('Technology');
+                let Machine = getCookie('Machine');
+                let Lot = getCookie('Lot');
+
+                if (Technology != null && Machine != null && Lot != null) {
+                    getQryLot(Technology, Machine, Lot);
+                }
+                
+                $('select').change(function () {
+                    let Technology = $("#Technology option:selected").text();
+                    if (Technology.includes('Select')) {
+                        toastr.error('Please select Technology');
+                        return;
+                    }
+                    let Machine = $("#Machine option:selected").text();
+                    if (Machine.includes('Select')) {
+                        toastr.error('Please select Machine');
+                        return;
+                    }
+                    let Lot = $("#Lot option:selected").text();
+                    if (Lot.includes('Select')) {
+                        toastr.error('Please select Lot');
+                        return;
+                    }
+                    setCookie('Technology', Technology, 1);
+                    setCookie('Machine', Machine, 1);
+                    setCookie('Lot', Lot, 1);
+                    getQryLot(Technology, Machine, Lot);
+                });
+            });
+            function getQryLot(Technology, Machine, Lot) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/QryLot",
+                    data: { 'Technology': Technology, 'Machine': Machine, 'Lot': Lot },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            $('#ProductName').val(response.productName);
+                            $('#Des').val(response.des);
+                            $('#Tol').val(response.tol);
+                            $('#Cav').val(response.cav);
+                            $('#Loq').val(response.loq);
+                            $('#Cph').val(response.cph);
+                            $('#Pps').val(response.pps);
+                            $('#Loh').val(response.loh);
+                            $('#P1').val(response.p1);
+                            $('#P1q').val(response.p1q);
+                            $('#P2').val(response.p2);
+                            $('#P2q').val(response.p2q);
+                            $('#Mb').val(response.mb);
+                            $('#Mbq').val(response.mbq);
+                            $('#Sa').val(response.sa);
+                            $('#Saq').val(response.saq);
+                            $('#Pa').val(response.pa);
+                            $('#Paq').val(response.paq);
+                            $('#Ca').val(response.ca);
+                            $('#Caq').val(response.caq);
+                            $('#Cl').val(response.cl);
+                            $('#Clq').val(response.clq);
+                            $('#lb').val(response.lb);
+                            $('#lbq').val(response.lbq);
+                            if (response.rtq) {
+                                $('#Rtq').prop('checked', true);
+                            } else {
+                                $('#Rtq').prop('checked', false);
+                            }
+                            if (response.fut) {
+                                $('#Fut').prop('checked', true);
+                            } else {
+                                $('#Fut').prop('checked', false);
+                            }
+                            if (response.sts) {
+                                $('#Sts').prop('checked', true);
+                            } else {
+                                $('#Sts').prop('checked', false);
+                            }
+                            if (response.ens) {
+                                $('#Ens').prop('checked', true);
+                            } else {
+                                $('#Ens').prop('checked', false);
+                            }
+                            if (response.coc) {
+                                $('#Coc').prop('checked', true);
+                            } else {
+                                $('#Coc').prop('checked', false);
+                            }
+                            if (response.coa) {
+                                $('#Coa').prop('checked', true);
+                            } else {
+                                $('#Coa').prop('checked', false);
+                            }
+                            if (response.spc) {
+                                $('#Spc').prop('checked', true);
+                            } else {
+                                $('#Spc').prop('checked', false);
+                            }
+                            if (response.por) {
+                                $('#Por').prop('checked', true);
+                            } else {
+                                $('#Por').prop('checked', false);
+                            }
+                            toastr.success('Success!');
+                        } else {
+                            toastr.error('There is no QryLot');
+                        }
+                    },
+                    failure: function (response) {
+                        toastr.error(response.responseText);
+                    },
+                    error: function (response) {
+                        toastr.error(response.responseText);
+                    }
+                });
+            }
+        </script>
+    }

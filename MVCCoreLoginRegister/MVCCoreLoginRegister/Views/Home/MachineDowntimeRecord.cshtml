@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Machine Downtime Record";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h1 class="text-center">Machine Downtime Record</h1>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Checkpoint</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="checkpoint" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Full Cavitation</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="cavitation" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2 text-right">
+        <label class="col-form-label">Lot</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="Lot" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <h3>Comment</h3>
+    <textarea id="comment" class="form-control" style="height:350px;"></textarea>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-10">
+
+    </div>
+    <div class="col-md-2">
+        <input type="button" id="save" value="Save" class="form-control btn btn-primary" />
+    </div>
+</div>

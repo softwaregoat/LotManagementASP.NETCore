@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewData["Title"] = "Material Lot Control";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Material Lot Control</h1>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <label class="col-form-label">Product</label>
+    </div>
+    <div class="col-md-2">
+        <select id="P" class="form-control">
+            <option value="value">text</option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <label class="col-form-label">Description</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="des" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <label class="col-form-label">Lot</label>
+    </div>
+    <div class="col-md-2">
+        <select id="Lot" class="form-control">
+            <option value="value">text</option>
+        </select>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <label class="col-form-label">Date</label>
+    </div>
+    <div class="col-md-2">
+        <input type="text" class="form-control" id="date" value="" />
+    </div>
+</div>
+<br />
+<div class="row">
+    <table class="table table-borderless table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Lot Update</th>
+                <th scope="col">Date/Act. Time</th>
+                <th scope="col">Carton No</th>
+                <th scope="col">Polymer 1</th>
+                <th scope="col">Polymer 2</th>
+                <th scope="col">Masterbatch</th>
+                <th scope="col">Slip Additive</th>
+                <th scope="col">Save</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" class="form-control lot-update" value="" /></td>
+                <td><input type="text" class="form-control date-time" value="" /></td>
+                <td><input type="text" class="form-control carton-no" value="" /></td>
+                <td><input type="text" class="form-control polymer1" value="" /></td>
+                <td><input type="text" class="form-control polymer2" value="" /></td>
+                <td><input type="text" class="form-control masterbatch" value="" /></td>
+                <td><input type="text" class="form-control slip" value="" /></td>
+                <td><input type="button" class="form-control save btn btn-primary" value="Save" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input.lot-update').click(function () {
+                if ($(this).prop('checked')) {
+                    var now = new Date();
+                    let log = now.toLocaleString();
+                    $(this).closest('tr').find('input.date-time').val(log);
+                }
+                else {
+                    $(this).closest('tr').find('input.date-time').val('');
+                    window.location.href = "/ProductSetup/LineClearance";
+                }
+            });
+            $('input.save').click(function () {
+                let tr = $(this).closest('tr');
+                if ($(tr).find('input.date-time').val() == '') {
+                    toastr.warning('Date/Cat. Time is empty.');
+                    return;
+                }
+                if ($(tr).find('input.carton-no').val() == '') {
+                    toastr.warning('Carton No is empty.');
+                    return;
+                }
+                if ($(tr).find('input.polymer1').val() == '') {
+                    toastr.warning('Polymer 1 is empty.');
+                    return;
+                }
+                if ($(tr).find('input.polymer2').val() == '') {
+                    toastr.warning('Polymer 2 is empty.');
+                    return;
+                }
+                if ($(tr).find('input.masterbatch').val() == '') {
+                    toastr.warning('Master Batch is empty.');
+                    return;
+                }
+                if ($(tr).find('input.slip').val() == '') {
+                    toastr.warning('Slip Additive is empty.');
+                    return;
+                }
+                window.location.href = "/Home/JobBagOverview";
+            });
+
+            var timer2 = "5:00";
+            timerDown(timer2);
+            redirectPage(5, "/Home/JobBagOverview");
+        });
+    </script>
+}
+
