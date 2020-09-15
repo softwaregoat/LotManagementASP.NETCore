@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVCCoreLoginRegister.Data;
 
 namespace MVCCoreLoginRegister.Controllers
 {
     public class ProductionControlController : Controller
     {
+        JobBagContext _context = new JobBagContext();
         // GET: HomeController1
         public ActionResult ProductCheckpoint()
         {
@@ -18,72 +20,83 @@ namespace MVCCoreLoginRegister.Controllers
         {
             return View();
         }
-        // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: HomeController1/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: HomeController1/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult ProductCheckPoint(string Lot)
+        {
+            //var lines = _context.TblProductCheckPoint.Where(em => em.LotName == Lot);
+            var lines = _context.TblProductCheckPoint.ToList();
+            if (lines != null)
+            {
+                return Json(lines);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public ActionResult SaveProductCheckPoint(int CartonNo, string Des, string Product, string CheckPoint, bool McRunning, int ActiveCavities,
+            string LotName, decimal ShotWeight, int CycleCount, bool Rejects, string PcptimeStamp)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var em = new TblProductCheckPoint();
+                em.CartonNo = CartonNo;
+                em.CurrentDate = DateTime.Now;
+                em.Des = Des;
+                em.ProductName = Product;
+                em.CheckPoint = TimeSpan.Parse(CheckPoint);
+                em.McRunning = McRunning;
+                em.ActiveCavities = ActiveCavities;
+                em.ShotWeight = ShotWeight;
+                em.CycleCount = CycleCount;
+                em.Rejects = Rejects;
+                em.LotName = LotName;
+                em.PcptimeStamp = Convert.ToDateTime(PcptimeStamp);
+                em.LotName = LotName;
+
+                _context.TblProductCheckPoint.Add(em);
+                _context.SaveChanges();
+                return Json("Success to save");
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                return Json("Failed");
             }
         }
-
-        // GET: HomeController1/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController1/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult FunctionalTest(string Lot)
+        {
+            //var lines = _context.TblFunctionalTest.Where(em => em.LotName == Lot);
+            var lines = _context.TblFunctionalTest.ToList();
+            if (lines != null)
+            {
+                return Json(lines);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public ActionResult SaveFunctionalTest(int CartonNo, string Comment, string Des, string FttimeStamp, 
+            string LotName, string Product, string Result, int SampleSize, string TestType)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                var em = new TblFunctionalTest();
+                em.CartonNo = CartonNo;
+                em.Comment = Comment;
+                em.CurrentDate = DateTime.Now;
+                em.Des = Des;
+                em.FttimeStamp = Convert.ToDateTime(FttimeStamp);
+                em.LotName = LotName;
+                em.ProductName = Product;
+                em.Result = Result;
+                em.SampleSize = SampleSize;
+                em.TestType = TestType;
 
-        // GET: HomeController1/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: HomeController1/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
+                _context.TblFunctionalTest.Add(em);
+                _context.SaveChanges();
+                return Json("Success to save");
             }
-            catch
+            catch (Exception)
             {
-                return View();
+                return Json("Failed");
             }
         }
     }

@@ -66,9 +66,78 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "/DataArchive/GetLot",
+                success: function (response) {
+                    if (response != 'Failed') {
+                        var items = '';
+                        $("#Lot").empty();
+                        for (var i = 0; i < response.length; i++) {
+                            var em = response[i];
+                            items += "<option value='" + em.lotId + "'>" + em.lotName + "</option>";
+                        }
+                        $('#Lot').html(items);
+                        toastr.success("Success for Lot");
+                    }
+                    else {
+                        toastr.error('Failed for Lot');
+                    }
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/DataArchive/GetDataArchiveQuery",
+                success: function (response) {
+                    if (response != 'Failed') {
+                        var items = '';
+                        $("#data-query").empty();
+                        for (var i = 0; i < response.length; i++) {
+                            var em = response[i];
+                            items += "<option value='" + em.dataArchiveQueryId + "'>" + em.dataArchiveQuery + "</option>";
+                        }
+                        $('#data-query').html(items);
+                        toastr.success("Success for Lot");
+                    }
+                    else {
+                        toastr.error('Failed for Lot');
+                    }
+                }
+            });
+            $('#Lot').change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/DataArchive/QryLot",
+                    data: {'LotID': $('#Lot').val()},
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            $('#DES').val(response.productName);
+                            toastr.success("Success for Product Description");
+                        }
+                        else {
+                            toastr.error('Failed for Lot');
+                        }
+                    }
+                });
+            });
+            $('#data-query').change(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/DataArchive/DataQuery",
+                    data: { 'Query': $('#data-query').val() },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            $('#DES').val(response.productName);
+                            toastr.success("Success for Product Description");
+                        }
+                        else {
+                            toastr.error('Failed for Lot');
+                        }
+                    }
+                });
+            });
             var timer2 = "0:30";
-            timerDown(timer2);
-            redirectPage(0.5, "/Home/JobBagOverview");
+            timerDown(timer2, "/Home/JobBagOverview");
         });
     </script>
 }

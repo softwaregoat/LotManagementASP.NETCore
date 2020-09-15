@@ -1,4 +1,5 @@
-﻿function timerDown(timer2) {
+﻿// timers = '5:00';
+function timerDown(timer2, url = '') {
     var interval = setInterval(function () {
         var timer = timer2.split(':');
         //by parsing integer, I avoid all extra string processing
@@ -12,13 +13,12 @@
         //minutes = (minutes < 10) ?  minutes : minutes;
         $('#timeout').html('Exiting Page in ' + minutes + 'm:' + seconds + 's');
         timer2 = minutes + ':' + seconds;
+        if (minutes == 0 && seconds == '00') {
+            if(url != '') window.location.href = url
+        }
     }, 1000);
 }
 
-function redirectPage(min, url) {
-    let delay = min * 60 * 1000;
-    setTimeout(function () { window.location.href = url; }, delay);
-}
 function setCookie(name, value, days) {
     var expires = "";
     if (days) {
@@ -40,4 +40,14 @@ function getCookie(name) {
 }
 function eraseCookie(name) {
     document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
 }

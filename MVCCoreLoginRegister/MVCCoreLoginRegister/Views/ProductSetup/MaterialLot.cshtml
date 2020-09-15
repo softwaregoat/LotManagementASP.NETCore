@@ -11,9 +11,7 @@
         <label class="col-form-label">Product</label>
     </div>
     <div class="col-md-2">
-        <select id="P" class="form-control">
-            <option value="value">text</option>
-        </select>
+        <input type="text" class="form-control" id="product" value="" />
     </div>
 </div>
 <br />
@@ -31,9 +29,7 @@
         <label class="col-form-label">Lot</label>
     </div>
     <div class="col-md-2">
-        <select id="Lot" class="form-control">
-            <option value="value">text</option>
-        </select>
+        <input type="text" class="form-control" id="Lot" value="" />
     </div>
 </div>
 <br />
@@ -187,6 +183,46 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            let ProductName = getCookie('ProductName');
+            let Des = getCookie('Des');
+            let LotID = getCookie('LotID');
+            let Machine = getCookie('Machine');
+            $('#product').val(ProductName);
+            $('#des').val(Des);
+            var now = new Date();
+            let log = now.toLocaleString();
+            $('#date').val(log);
+            let Lot = getCookie('Lot');
+            $('#Lot').val(Lot);
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductSetup/MaterialLot",
+                    data: { 'Lot': Lot },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            let trs = $('tbody tr');
+                            for (var i = 0; i < response.length; i++) {
+                                var em = response[i];
+                                let tr = trs[i];
+                                $($(tr).find('.date-time')).val(em.mlctimeStamp);
+                                $($(tr).find('.date-time')).prop("disabled", true);
+                                $($(tr).find('.carton-no')).val(em.cartonNo);
+                                $($(tr).find('.carton-no')).prop("disabled", true);
+                                $($(tr).find('.polymer1')).val(em.p1lot);
+                                $($(tr).find('.polymer1')).prop("disabled", true);
+                                $($(tr).find('.polymer2')).val(em.p2lot);
+                                $($(tr).find('.polymer2')).prop("disabled", true);
+                                $($(tr).find('.masterbatch')).val(em.mblot);
+                                $($(tr).find('.masterbatch')).prop("disabled", true);
+                                $($(tr).find('.slip')).val(em.salot);
+                                $($(tr).find('.slip')).prop("disabled", true);
+                                $($(tr).find('.save')).prop("disabled", true);
+                            }
+                            toastr.success("Success for LineClearance");
+                        }
+                        else toastr.error(response);
+                    }
+                });
             $('input.lot-update').click(function () {
                 if ($(this).prop('checked')) {
                     var now = new Date();
@@ -228,8 +264,7 @@
             });
 
             var timer2 = "5:00";
-            timerDown(timer2);
-            redirectPage(5, "/Home/JobBagOverview");
+            timerDown(timer2, "/Home/JobBagOverview");
         });
     </script>
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3nLLrf/uSLgu80qwgbGECuHW763xnMZyXenU18Rx5JgvIKaAa0nSWSA7//m4jD8ZhdRaPprYCkHdr6hfbS0nrg==",
+  "dgSpecHash": "oefUhNEFCUL8gqnqUJETk91CNGEYEUn910s/d2sDFaFU0aSY2xxtNuJJS7oVqKjEeOTOFZOtzzDDQ8HeDHPMOQ==",
   "success": true,
-  "projectFilePath": "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
+  "projectFilePath": "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Software\\.nuget\\packages\\jquery\\1.6.3\\jquery.1.6.3.nupkg.sha512",
     "C:\\Users\\Software\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.7\\microsoft.aspnetcore.cryptography.internal.3.1.7.nupkg.sha512",

@@ -11,9 +11,7 @@
         <label class="col-form-label">Lot</label>
     </div>
     <div class="col-md-2">
-        <select id="Lot" class="form-control">
-            <option value="value">text</option>
-        </select>
+        <input type="text" id="Lot" class="form-control" value="" />
     </div>
 </div>
 <br />
@@ -196,45 +194,132 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            let LotID = getCookie('LotID');
+            let Machine = getCookie('Machine');
+            let Lot = getCookie('Lot');
+            $('#Lot').val(Lot);
+            $.ajax({
+                type: "POST",
+                url: "/ProductSetup/AuthorisationToRun",
+                data: { 'Lot': Lot },
+                success: function (response) {
+                    if (response != 'Failed') {
+                        let trs = $('tbody tr');
+                        for (var i = 0; i < response.length; i++) {
+                            var em = response[i];
+                            let tr = trs[i];
+                            $($(tr).find('.date-time')).val(em.atrtimeStamp);
+                            $($(tr).find('.date-time')).prop("disabled", true);
+                            $($(tr).find('.tech-rfid')).val(em.techRfid);
+                            $($(tr).find('.tech-rfid')).prop("disabled", true);
+                            $($(tr).find('.username')).val(em.techUsername);
+                            $($(tr).find('.username')).prop("disabled", true);
+                            $($(tr).find('.qc-rfid')).val(em.qcrfid);
+                            $($(tr).find('.qc-rfid')).prop("disabled", true);
+                            $($(tr).find('.username1')).val(em.qcusername);
+                            $($(tr).find('.username1')).prop("disabled", true);
+                        }
+                        toastr.success("Success for LineClearance");
+                    }
+                    else toastr.error(response);
+                }
+            });
+
             $('input.log').click(function () {
                 if ($(this).prop('checked')) {
                     var now = new Date();
                     let log = now.toLocaleString();
                     $(this).closest('tr').find('input.date-time').val(log);
+                    $(this).closest('tr').find('input.tech-rfid').focus();
                 }
                 else {
                     $(this).closest('tr').find('input.date-time').val('');
-                    window.location.href = "/ProductSetup/LineClearance";
+
                 }
+            });
+            $('input.tech-rfid').on('input', function () {
+                var tr = $(this).closest('tr');
+                var techUser = $(tr).find('.username');
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/GetUser",
+                    data: { 'TechRfid': $(this).val() },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            $(techUser).val(response.username);
+                            var qcrfid = $(tr).find('.qc-rfid');
+                            $(qcrfid).focus();
+                        }
+                        else toastr.error('RFID not recognised, please try again');
+                    }
+                })
+            });
+            $('input.qc-rfid').on('input', function () {
+                var tr = $(this).closest('tr');
+                var techUser = $(tr).find('.username1');
+                $.ajax({
+                    type: "POST",
+                    url: "/Account/GetUser",
+                    data: { 'TechRfid': $(this).val() },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            $(techUser).val(response.username);
+                            var qcrfid = $(tr).find('.qc-rfid');
+                        }
+                        else toastr.error('RFID not recognised, please try again');
+                    }
+                })
             });
             $('input.save').click(function () {
                 let tr = $(this).closest('tr');
-                if ($(tr).find('input.date-time').val() == '') {
+                var LCTimeStamp = $(tr).find('input.date-time').val();
+                var TechRFID = $(tr).find('input.tech-rfid').val();
+                var TechUsername = $(tr).find('input.username').val();
+                var QCRFID = $(tr).find('input.qc-rfid').val();
+                var QCUsername = $(tr).find('input.username1').val();
+
+                if (LCTimeStamp == '') {
                     toastr.warning('Date/Cat. Time is empty.');
                     return;
                 }
-                if ($(tr).find('input.tech-rfid').val() == '') {
+                if (TechRFID == '') {
                     toastr.warning('Tech RFID is empty.');
                     return;
                 }
-                if ($(tr).find('input.username').val() == '') {
+                if (TechUsername == '') {
                     toastr.warning('First Username is empty.');
                     return;
                 }
-                if ($(tr).find('input.qc-rfid').val() == '') {
+                if (QCRFID == '') {
                     toastr.warning('QC RFID is empty.');
                     return;
                 }
-                if ($(tr).find('input.username1').val() == '') {
+                if (QCUsername == '') {
                     toastr.warning('Second Username is empty.');
                     return;
                 }
-                window.location.href = "/Home/JobBagOverview";
-            });
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductSetup/SaveAuthorisationToRun",
+                    data: {
+                        'Lot': $('#Lot').val(),
+                        'LCTimeStamp': LCTimeStamp,
+                        'TechRFID': TechRFID,
+                        'TechUsername': TechUsername,
+                        'QCRFID': QCRFID,
+                        'QCUsername': QCUsername
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            window.location.href = "/Home/JobBagOverview";
+                        }
+                        else toastr.error(response);
+                    }
+                })
 
+            });
             var timer2 = "5:00";
-            timerDown(timer2);
-            redirectPage(5, "/Home/JobBagOverview");
+            timerDown(timer2, "/Home/JobBagOverview");
         });
     </script>
 }

@@ -632,14 +632,25 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('input.lot-update').click(function () {
+            let checkpoint = getCookie('checkpoint-time');
+            let cavitation = getCookie('Cav');
+            let Lot = getCookie('Lot');
+            $('#checkpoint').val(checkpoint);
+            $('#cavitation').val(cavitation);
+            $('#Lot').val(Lot);
+
+            $('input.defect').click(function () {
                 if ($(this).prop('checked')) {
-                    var now = new Date();
-                    let log = now.toLocaleString();
-                    $(this).closest('tr').find('input.date-time').val(log);
+                    let cvt = $(this).closest('tr').find('label').text();
+                    let cv_n = cvt.replace('Cavity ', '');
+
+                    if (parseInt(cv_n) > parseInt(cavitation)) {
+                        toastr.error('incorrect cavity number selected');
+                        $(this).prop('checked', false);
+                    }
                 }
                 else {
-                    $(this).closest('tr').find('input.date-time').val('');
+                    $(this).closest('tr').find('label').text();
                     window.location.href = "/ProductSetup/Authorisation";
                 }
             });
@@ -677,8 +688,7 @@
             });
 
             var timer2 = "0:30";
-            timerDown(timer2);
-            //redirectPage(0.5, "/ProductionControl/ProductCheckpoint");
+            timerDown(timer2, "/ProductionControl/ProductCheckpoint");
         });
     </script>
 }

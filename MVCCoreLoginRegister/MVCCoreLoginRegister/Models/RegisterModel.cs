@@ -11,7 +11,6 @@ namespace MVCCoreLoginRegister.Models
         [Required]
         [DataType(DataType.Password)]
         public string Rfid { get; set; }
-        [Required]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]

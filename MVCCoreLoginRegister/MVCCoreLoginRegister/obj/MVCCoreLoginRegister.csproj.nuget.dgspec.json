@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj": {}
+    "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj": {}
   },
   "projects": {
-    "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj": {
+    "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
+        "projectUniqueName": "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
         "projectName": "MVCCoreLoginRegister",
-        "projectPath": "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
+        "projectPath": "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\MVCCoreLoginRegister.csproj",
         "packagesPath": "C:\\Users\\Software\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\VisualStudio\\Core\\alansweetingncl\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\obj\\",
+        "outputPath": "E:\\Project\\VisualStudio\\Core\\LotManagementASP.NETCore\\MVCCoreLoginRegister\\MVCCoreLoginRegister\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Software\\AppData\\Roaming\\NuGet\\NuGet.Config",

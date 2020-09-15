@@ -381,34 +381,141 @@
     @section Scripts {
         <script>
             $(document).ready(function () {
-                let Technology = getCookie('Technology');
+                let TechnologyID = getCookie('TechnologyID');
                 let Machine = getCookie('Machine');
-                let Lot = getCookie('Lot');
+                let LotID = getCookie('LotID');
+                let MachineID = getCookie('MachineID');
+                $("input").each(function () {
+                    let n = $(this).attr("id");
+                    let v = getCookie(n);
+                    $(this).val(v);
+                });
 
-                if (Technology != null && Machine != null && Lot != null) {
-                    getQryLot(Technology, Machine, Lot);
+                if (TechnologyID != null && Machine != null && LotID != null) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/GetTechnology",
+                        success: function (response) {
+                            if (response != 'Failed') {
+                                var items = '';
+                                $("#Technology").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    var em = response[i];
+                                    if (TechnologyID == em.technologyId) {
+                                        items += "<option value='" + em.technologyId + "' selected>" + em.technologyName + "</option>";
+                                    } else {
+                                        items += "<option value='" + em.technologyId + "'>" + em.technologyName + "</option>";
+                                    }
+                                }
+                                $('#Technology').html(items);
+                            }
+                        }
+                    }).done(function (data) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/GetMachine",
+                            data: { 'TechnologyID': TechnologyID },
+                            success: function (response) {
+                                if (response != 'Failed') {
+                                    var items = '';
+                                    $("#Machine").empty();
+                                    for (var i = 0; i < response.length; i++) {
+                                        var em = response[i];
+                                        if (MachineID == em.machineId) {
+                                            items += "<option value='" + em.machineId + "' selected>" + em.machineName + "</option>";
+                                        } else {
+                                            items += "<option value='" + em.machineId + "'>" + em.machineName + "</option>";
+                                        }
+                                    }
+                                    $('#Machine').html(items);
+                                }
+                            }
+                        });
+                    }).done(function (data) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/Home/GetLot",
+                            data: { 'Machine': Machine },
+                            success: function (response) {
+                                if (response != 'Failed') {
+                                    var items = '';
+                                    $("#Lot").empty();
+                                    for (var i = 0; i < response.length; i++) {
+                                        var em = response[i];
+                                        if (LotID == em.lotId) {
+                                            items += "<option value='" + em.lotId + "' selected>" + em.lotName + "</option>";
+                                        } else {
+                                            items += "<option value='" + em.lotId + "'>" + em.lotName + "</option>";
+                                        }
+                                    }
+                                    $('#Lot').html(items);
+                                    toastr.success("Success for Load");
+                                }
+                                else toastr.error(response);
+                            }
+                        });
+                    });
                 }
-                
+                $('#Technology').change(function () {
+                    let TechnologyID = $('#Technology').val();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/GetMachine",
+                        data: { 'TechnologyID': TechnologyID },
+                        success: function (response) {
+                            if (response != 'Failed') {
+                                var items = '';
+                                $("#Machine").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    var em = response[i];
+                                    items += "<option value='" + em.machineId + "'>" + em.machineName + "</option>";
+                                }
+                                $('#Machine').html(items);
+                                toastr.success("Success for Machine");
+                            }
+                            else toastr.error(response);
+                        }
+                    });
+                });
+                $('#Machine').change(function () {
+                    let Machine = $('#Machine option:selected').text();
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/GetLot",
+                        data: { 'Machine': Machine },
+                        success: function (response) {
+                            if (response != 'Failed') {
+                                var items = '';
+                                $("#Lot").empty();
+                                for (var i = 0; i < response.length; i++) {
+                                    var em = response[i];
+                                    items += "<option value='" + em.lotId + "'>" + em.lotName + "</option>";
+                                }
+                                $('#Lot').html(items);
+                                toastr.success("Success for Lot");
+                            }
+                            else toastr.error(response);
+                        }
+                    });
+                });
+
                 $('select').change(function () {
-                    let Technology = $("#Technology option:selected").text();
-                    if (Technology.includes('Select')) {
-                        toastr.error('Please select Technology');
-                        return;
-                    }
+                    let TechnologyID = $("#Technology").val();
                     let Machine = $("#Machine option:selected").text();
-                    if (Machine.includes('Select')) {
-                        toastr.error('Please select Machine');
-                        return;
-                    }
+                    let MachineID = $("#Machine").val();
+                    let LotID = $("#Lot").val();
                     let Lot = $("#Lot option:selected").text();
-                    if (Lot.includes('Select')) {
-                        toastr.error('Please select Lot');
-                        return;
-                    }
-                    setCookie('Technology', Technology, 1);
+                    setCookie('TechnologyID', TechnologyID, 1);
+                    setCookie('MachineID', MachineID, 1);
                     setCookie('Machine', Machine, 1);
+                    setCookie('LotID', LotID, 1);
                     setCookie('Lot', Lot, 1);
-                    getQryLot(Technology, Machine, Lot);
+                    //getQryLot(Technology, Machine, Lot);
+                });
+                $('input').change(function () {
+                    let v = $(this).val();
+                    let n = $(this).attr('id');
+                    setCookie(n, v, 1);
                 });
             });
             function getQryLot(Technology, Machine, Lot) {
@@ -495,5 +602,6 @@
                     }
                 });
             }
+            timerDown('10:00', 'Account/Logout');
         </script>
     }

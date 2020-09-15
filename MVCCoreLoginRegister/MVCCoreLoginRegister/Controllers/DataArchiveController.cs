@@ -4,84 +4,58 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVCCoreLoginRegister.Data;
 
 namespace MVCCoreLoginRegister.Controllers
 {
     public class DataArchiveController : Controller
     {
+        JobBagContext _context = new JobBagContext();
         // GET: DataArchiveController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: DataArchiveController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DataArchiveController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: DataArchiveController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult GetLot()
         {
-            try
+            var Lots = _context.TblLot.ToList();
+            if (Lots != null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(Lots);
             }
-            catch
-            {
-                return View();
-            }
+            return Json("Failed");
         }
-
-        // GET: DataArchiveController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: DataArchiveController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public IActionResult GetDataArchiveQuery()
         {
-            try
+            var Lots = _context.TblDataArchiveQuery.ToList();
+            if (Lots != null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(Lots);
             }
-            catch
-            {
-                return View();
-            }
+            return Json("Failed");
         }
-
-        // GET: DataArchiveController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DataArchiveController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public IActionResult QryLot(int LotID)
         {
-            try
+            var em = _context.QryLot.SingleOrDefault(em => em.LotId == LotID);
+            if (em != null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(em);
             }
-            catch
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult DataQuery(string Query)
+        {
+            var Lots = _context.TblDataArchiveQuery.ToList();
+            if (Lots != null)
             {
-                return View();
+                return Json(Lots);
             }
+            return Json("Failed");
         }
     }
 }

@@ -54,7 +54,36 @@ namespace MVCCoreLoginRegister.Controllers
             }
             return Json("Failed");
         }
-
+        [HttpPost]
+        public IActionResult GetLot(string Machine)
+        {
+             var   Lots = _context.TblLot.Where(em => em.MachineName == Machine);
+            if (Lots != null)
+            {
+                return Json(Lots);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult GetMachine(int TechnologyID)
+        {
+            var Techs = _context.TblMachine.Where(em => em.TechnologyId == TechnologyID);
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult GetTechnology()
+        {
+            var Techs = _context.TblTechnology.ToList();
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

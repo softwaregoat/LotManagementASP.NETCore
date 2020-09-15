@@ -11,9 +11,7 @@
         <label class="col-form-label">Product</label>
     </div>
     <div class="col-md-4">
-        <select id="P" class="form-control">
-            <option value="value">text</option>
-        </select>
+        <input type="text" class="form-control" id="product" value="" />
     </div>
 </div>
 <br />
@@ -31,9 +29,7 @@
         <label class="col-form-label">Lot</label>
     </div>
     <div class="col-md-4">
-        <select id="Lot" class="form-control">
-            <option value="value">text</option>
-        </select>
+        <input type="text" class="form-control" id="Lot" value="" />
     </div>
 </div>
 <br />
@@ -285,6 +281,54 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            let ProductName = getCookie('ProductName');
+            let Des = getCookie('Des');
+            $('#product').val(ProductName);
+            $('#des').val(Des);
+            var now = new Date();
+            let log = now.toLocaleString();
+            $('#date').val(log);
+            let Lot = getCookie('Lot');
+            $('#Lot').val(Lot);
+
+            $.ajax({
+                type: "POST",
+                url: "/ProductionControl/FunctionalTest",
+                data: { 'Lot': Lot },
+                success: function (response) {
+                    if (response != 'Failed') {
+                        let trs = $('tbody tr');
+                        for (var i = 0; i < response.length; i++) {
+                            var em = response[i];
+                            let tr = trs[i];
+
+                            $($(tr).find('.date-time')).val(em.fttimeStamp);
+                            $($(tr).find('.date-time')).prop("disabled", true);
+
+                            $($(tr).find('.carton-no')).val(em.cartonNo);
+                            $($(tr).find('.carton-no')).prop("disabled", true);
+
+                            $($(tr).find('.sample-size')).val(em.sampleSize);
+                            $($(tr).find('.sample-size')).prop("disabled", true);
+
+                            $($(tr).find('.test-type')).val(em.testType);
+                            $($(tr).find('.test-type')).prop("disabled", true);
+
+                            $($(tr).find('.result')).val(em.result);
+                            $($(tr).find('.result')).prop("disabled", true);
+
+                            $($(tr).find('.comment')).val(em.comment);
+                            $($(tr).find('.comment')).prop("disabled", true);
+
+                            $($(tr).find('.save')).prop("disabled", true);
+                            $($(tr).find('.log')).prop("disabled", true);
+                        }
+                        toastr.success("Success for LineClearance");
+                    }
+                    else toastr.error(response);
+                }
+            });
+
             $('input.log').click(function () {
                 if ($(this).prop('checked')) {
                     var now = new Date();
@@ -298,36 +342,69 @@
             });
             $('input.save').click(function () {
                 let tr = $(this).closest('tr');
-                if ($(tr).find('input.date-time').val() == '') {
+                
+                let CartonNo = $(tr).find('input.carton-no').val();
+                let Comment = $(tr).find('input.comment').val();
+                let Des = Des;
+                let FttimeStamp = $(tr).find('input.date-time').val();
+                let LotName = Lot;
+                let Product = ProductName;
+                let Result = $(tr).find('input.result').val();
+                let SampleSize = $(tr).find('input.sample-size').val();
+                let TestType = $(tr).find('input.test-type').val();
+                if (FttimeStamp == '') {
                     toastr.warning('Date/Cat. Time is empty.');
                     return;
                 }
-                if ($(tr).find('input.carton-no').val() == '') {
+                if (CartonNo == '') {
                     toastr.warning('Carton No is empty.');
                     return;
                 }
-                if ($(tr).find('input.sample-size').val() == '') {
+                if (SampleSize == '') {
                     toastr.warning('Sample Size is empty.');
                     return;
                 }
-                if ($(tr).find('input.test-type').val() == '') {
+                if (TestType == '') {
                     toastr.warning('Test Type is empty.');
                     return;
                 }
-                if ($(tr).find('input.result').val() == '') {
+                if (Result == '') {
                     toastr.warning('Result is empty.');
                     return;
                 }
-                if ($(tr).find('input.comment').val() == '') {
+                if (Comment == '') {
                     toastr.warning('Comment is empty.');
                     return;
                 }
+
                 window.location.href = "/Home/JobBagOverview";
             });
-
+            $.ajax({
+                type: "POST",
+                url: "/ProductionControl/FunctionalTest",
+                data: {
+                    'CartonNo': CartonNo,
+                    'Comment': Comment,
+                    'Des': Des,
+                    'FttimeStamp': FttimeStamp,
+                    'LotName': LotName,
+                    'Product': Product,
+                    'Result': Result,
+                    'SampleSize': SampleSize,
+                    'TestType': TestType
+                },
+                success: function (response) {
+                    if (response != 'Failed') {
+                        toastr.success('Success to save');
+                    }
+                    else {
+                        toastr.error(response);
+                    }
+                }
+            });
             var timer2 = "0:30";
-            timerDown(timer2);
-            redirectPage(0.5, "/Home/JobBagOverview");
+            timerDown(timer2, "/Home/JobBagOverview");
+
         });
     </script>
 }

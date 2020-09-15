@@ -91,73 +91,29 @@ namespace MVCCoreLoginRegister.Controllers
                 return View();
             }
         }
-        // GET: AccountController/Details/5
-        public ActionResult Details(int id)
+        // GET: AccountController/password
+        public ActionResult Password()
         {
             return View();
         }
-
-        // GET: AccountController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AccountController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Password(string Password)
         {
-            try
+            if (Password == "admin")
             {
-                return RedirectToAction(nameof(Index));
+                return Json("Success");
             }
-            catch
-            {
-                return View();
-            }
+            return Json("Failed");
         }
-
-        // GET: AccountController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult GetUser(string TechRfid)
         {
-            try
+            var user = _context.TblUser.SingleOrDefault(u => u.Rfid == TechRfid);
+            if (user != null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(user);
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: AccountController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: AccountController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Json("Failed");
         }
         public void Set(string key, string value, int? expireTime)
         {

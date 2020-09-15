@@ -42,6 +42,25 @@
 
     </div>
     <div class="col-md-2">
-        <input type="button" id="save" value="Save" class="form-control btn btn-primary" />
+        <input type="button" id="save" value="Save" class="form-control btn btn-primary" disabled />
     </div>
 </div>
+@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            let checkpoint = getCookie('checkpoint-time');
+            let cavitation = getCookie('Cav');
+            let Lot = getCookie('Lot');
+            $('#checkpopint').val(checkpoint);
+            $('#cavitation').val(cavitation);
+            $('#Lot').val(Lot);
+            $('#comment').change(function () {
+                $('#save').attr('disabled', false);
+            });
+            $('#save').click(function () {
+                window.location.href = "/ProductionControl/ProductCheckpoint";
+            });
+        });
+        timerDown('0:30', '/ProductionControl/ProductCheckpoint');
+    </script>
+}

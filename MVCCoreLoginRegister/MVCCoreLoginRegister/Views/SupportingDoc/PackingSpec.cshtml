@@ -10,9 +10,7 @@
         <label class="col-form-label">Product</label>
     </div>
     <div class="col-lg-2">
-        <select class="form-control" id="product">
-            <option value="value">text</option>
-        </select>
+        <input type="text" id="product" class="form-control" value="" />
     </div>
 </div>
 <br />
@@ -23,9 +21,10 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            let product = getCookie('ProductName');
+            $('#product').val(product);
             var timer2 = "0:30";
-            timerDown(timer2);
-            redirectPage(0.5, "/Home/JobBagOverview");
+            timerDown(timer2, "/Home/JobBagOverview");
         });
     </script>
 }
