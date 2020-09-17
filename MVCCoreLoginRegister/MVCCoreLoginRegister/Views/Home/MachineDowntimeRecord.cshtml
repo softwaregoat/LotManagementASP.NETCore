@@ -51,14 +51,49 @@
             let checkpoint = getCookie('checkpoint-time');
             let cavitation = getCookie('Cav');
             let Lot = getCookie('Lot');
-            $('#checkpopint').val(checkpoint);
+            $('#checkpoint').val(checkpoint);
             $('#cavitation').val(cavitation);
             $('#Lot').val(Lot);
-            $('#comment').change(function () {
+            $('#comment').on('input', function () {
                 $('#save').attr('disabled', false);
             });
             $('#save').click(function () {
-                window.location.href = "/ProductionControl/ProductCheckpoint";
+                let comment = $('#comment').val();
+
+                if (checkpoint == '' || checkpoint == undefined) {
+                    toastr.error('CheckPoint is empty');
+                    return;
+                }
+                if (cavitation == '' || cavitation == undefined) {
+                    toastr.error('cavitation is empty');
+                    return;
+                }
+                if (Lot == '' || Lot == undefined) {
+                    toastr.error('Lot is empty');
+                    return;
+                }
+                if (comment == '' || comment == undefined) {
+                    toastr.error('comment is empty');
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveMachineDowntimeRecord",
+                    data: {
+                        Lot: Lot,
+                        time: checkpoint,
+                        cav: cavitation,
+                        comment: comment
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            toastr.success("Success to save MachineDown Time Record");
+                            window.location.href = "/ProductionControl/ProductCheckpoint";
+                        }
+                        else toastr.error(response);
+                    }
+                });
+                
             });
         });
         timerDown('0:30', '/ProductionControl/ProductCheckpoint');

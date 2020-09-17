@@ -84,6 +84,48 @@ namespace MVCCoreLoginRegister.Controllers
             }
             return Json("Failed");
         }
+        [HttpPost]
+        public IActionResult CavitationRecordAction()
+        {
+            var Techs = _context.TblCavitationRecordAction.ToList();
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult CavitationRecordReason()
+        {
+            var Techs = _context.TblCavitationRecordReason.ToList();
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult SaveMachineDowntimeRecord(string Lot, string time, string cav, string comment)
+        {
+            try
+            {
+                var record = new TblMachineDowntimeRecord();
+                record.LotName = Lot;
+                record.PcptimeStamp = Convert.ToDateTime(time);
+                record.Cav = cav;
+                record.Comment = comment;
+                _context.TblMachineDowntimeRecord.Add(record);
+                _context.SaveChanges();
+                return Json("Success");
+            }
+            catch (Exception)
+            {
+                return Json("Failed");
+            }
+            
+
+            
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -64,12 +64,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -82,12 +82,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -102,12 +102,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -120,12 +120,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -138,12 +138,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -156,12 +156,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -174,12 +174,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -192,12 +192,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -210,12 +210,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -228,12 +228,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -246,12 +246,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -264,12 +264,12 @@
                 <td><input type="text" class="form-control sample-size" value="" /></td>
                 <td>
                     <select class="form-control test-type">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td>
                     <select class="form-control result">
-                        <option value="value">text</option>
+                        
                     </select>
                 </td>
                 <td><textarea class="form-text comment"></textarea></td>
@@ -286,48 +286,95 @@
             $('#product').val(ProductName);
             $('#des').val(Des);
             var now = new Date();
-            let log = now.toLocaleString();
+            let log = now.toLocaleDateString("en-US");
             $('#date').val(log);
             let Lot = getCookie('Lot');
             $('#Lot').val(Lot);
-
             $.ajax({
                 type: "POST",
-                url: "/ProductionControl/FunctionalTest",
-                data: { 'Lot': Lot },
+                url: "/ProductionControl/FunctionalTestResult",
                 success: function (response) {
                     if (response != 'Failed') {
-                        let trs = $('tbody tr');
+                        var items = '<option></option>';
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
-                            let tr = trs[i];
-
-                            $($(tr).find('.date-time')).val(em.fttimeStamp);
-                            $($(tr).find('.date-time')).prop("disabled", true);
-
-                            $($(tr).find('.carton-no')).val(em.cartonNo);
-                            $($(tr).find('.carton-no')).prop("disabled", true);
-
-                            $($(tr).find('.sample-size')).val(em.sampleSize);
-                            $($(tr).find('.sample-size')).prop("disabled", true);
-
-                            $($(tr).find('.test-type')).val(em.testType);
-                            $($(tr).find('.test-type')).prop("disabled", true);
-
-                            $($(tr).find('.result')).val(em.result);
-                            $($(tr).find('.result')).prop("disabled", true);
-
-                            $($(tr).find('.comment')).val(em.comment);
-                            $($(tr).find('.comment')).prop("disabled", true);
-
-                            $($(tr).find('.save')).prop("disabled", true);
-                            $($(tr).find('.log')).prop("disabled", true);
+                            items += "<option value='" + em.functionalTestResultId + "'>" + em.testResult + "</option>";
                         }
-                        toastr.success("Success for LineClearance");
+                        $('tbody tr').each(function (i, em) {
+                            var test = $(this).find('.result');
+                            $(test).empty();
+                            $(test).html(items);
+                        });
+                        toastr.success('Success to load TestResult');
                     }
-                    else toastr.error(response);
+                    else {
+                        toastr.error(response);
+                    }
                 }
+            }).done(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductionControl/FunctionalTestType",
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            var items = '<option></option>';
+                            for (var i = 0; i < response.length; i++) {
+                                var em = response[i];
+                                items += "<option value='" + em.functionalTestTypeId + "'>" + em.testType + "</option>";
+                            }
+                            $('tbody tr').each(function (i, em) {
+                                var test_type = $(this).find('.test-type');
+                                $(test_type).empty();
+                                $(test_type).html(items);
+                            });
+                            toastr.success('Success to load TestType');
+                        }
+                        else {
+                            toastr.error(response);
+                        }
+                    }
+                }).done(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "/ProductionControl/FunctionalTest",
+                        data: { 'Lot': Lot },
+                        success: function (response) {
+                            if (response != 'Failed') {
+                                let trs = $('tbody tr');
+                                for (var i = 0; i < response.length; i++) {
+                                    var em = response[i];
+                                    let tr = trs[i];
+
+                                    $($(tr).find('.date-time')).val(em.fttimeStamp);
+                                    $($(tr).find('.date-time')).prop("disabled", true);
+
+                                    $($(tr).find('.carton-no')).val(em.cartonNo);
+                                    $($(tr).find('.carton-no')).prop("disabled", true);
+
+                                    $($(tr).find('.sample-size')).val(em.sampleSize);
+                                    $($(tr).find('.sample-size')).prop("disabled", true);
+
+                                    $($(tr).find('.test-type')).html('<option>' + em.testType + '</option>');
+                                    $($(tr).find('.test-type')).prop("disabled", true);
+
+                                    $($(tr).find('.result')).html('<option>' + em.result + '</option>');
+                                    $($(tr).find('.result')).prop("disabled", true);
+
+                                    $($(tr).find('.comment')).val(em.comment);
+                                    $($(tr).find('.comment')).prop("disabled", true);
+
+                                    $($(tr).find('.save')).prop("disabled", true);
+                                    $($(tr).find('.log')).prop("disabled", true);
+                                }
+                                toastr.success("Success for LineClearance");
+                            }
+                            else toastr.error(response);
+                        }
+                    });
+                });
             });
+            
+            
 
             $('input.log').click(function () {
                 if ($(this).prop('checked')) {
@@ -343,65 +390,63 @@
             $('input.save').click(function () {
                 let tr = $(this).closest('tr');
                 
-                let CartonNo = $(tr).find('input.carton-no').val();
-                let Comment = $(tr).find('input.comment').val();
-                let Des = Des;
-                let FttimeStamp = $(tr).find('input.date-time').val();
-                let LotName = Lot;
-                let Product = ProductName;
-                let Result = $(tr).find('input.result').val();
-                let SampleSize = $(tr).find('input.sample-size').val();
-                let TestType = $(tr).find('input.test-type').val();
-                if (FttimeStamp == '') {
+                let CartonNo = $(tr).find('.carton-no').val();
+                let Comment = $(tr).find('.comment').val();
+                let FttimeStamp = $(tr).find('.date-time').val();
+                let Result = $(tr).find('.result option:selected').text();
+                let SampleSize = $(tr).find('.sample-size').val();
+                let TestType = $(tr).find('.test-type option:selected').text();
+
+                if (FttimeStamp == '' || FttimeStamp == undefined) {
                     toastr.warning('Date/Cat. Time is empty.');
                     return;
                 }
-                if (CartonNo == '') {
+                if (CartonNo == '' || CartonNo == undefined) {
                     toastr.warning('Carton No is empty.');
                     return;
                 }
-                if (SampleSize == '') {
+                if (SampleSize == '' || SampleSize == undefined) {
                     toastr.warning('Sample Size is empty.');
                     return;
                 }
-                if (TestType == '') {
+                if (TestType == '' || TestType == undefined) {
                     toastr.warning('Test Type is empty.');
                     return;
                 }
-                if (Result == '') {
+                if (Result == '' || Result == undefined) {
                     toastr.warning('Result is empty.');
                     return;
                 }
-                if (Comment == '') {
+                if (Comment == '' || Comment == undefined) {
                     toastr.warning('Comment is empty.');
                     return;
                 }
-
-                window.location.href = "/Home/JobBagOverview";
-            });
-            $.ajax({
-                type: "POST",
-                url: "/ProductionControl/FunctionalTest",
-                data: {
-                    'CartonNo': CartonNo,
-                    'Comment': Comment,
-                    'Des': Des,
-                    'FttimeStamp': FttimeStamp,
-                    'LotName': LotName,
-                    'Product': Product,
-                    'Result': Result,
-                    'SampleSize': SampleSize,
-                    'TestType': TestType
-                },
-                success: function (response) {
-                    if (response != 'Failed') {
-                        toastr.success('Success to save');
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductionControl/SaveFunctionalTest",
+                    data: {
+                        'CartonNo': CartonNo,
+                        'Comment': Comment,
+                        'Des': Des,
+                        'FttimeStamp': FttimeStamp,
+                        'LotName': Lot,
+                        'Product': ProductName,
+                        'Result': Result,
+                        'SampleSize': SampleSize,
+                        'TestType': TestType
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            toastr.success('Success to save');
+                            window.location.href = "/Home/JobBagOverview";
+                        }
+                        else {
+                            toastr.error(response);
+                        }
                     }
-                    else {
-                        toastr.error(response);
-                    }
-                }
+                });
             });
+            
             var timer2 = "0:30";
             timerDown(timer2, "/Home/JobBagOverview");
 

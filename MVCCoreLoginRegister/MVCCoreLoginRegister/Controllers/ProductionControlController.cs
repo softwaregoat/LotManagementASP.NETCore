@@ -73,6 +73,26 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
+        public ActionResult FunctionalTestType()
+        {
+            var lines = _context.TblFunctionalTestType.ToList();
+            if (lines != null)
+            {
+                return Json(lines);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public ActionResult FunctionalTestResult()
+        {
+            var lines = _context.TblFunctionalTestResult.ToList();
+            if (lines != null)
+            {
+                return Json(lines);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
         public ActionResult SaveFunctionalTest(int CartonNo, string Comment, string Des, string FttimeStamp, 
             string LotName, string Product, string Result, int SampleSize, string TestType)
         {

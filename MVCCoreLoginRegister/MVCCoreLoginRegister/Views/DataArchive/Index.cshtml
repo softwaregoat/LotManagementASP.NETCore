@@ -12,7 +12,6 @@
     </div>
     <div class="col-md-2">
         <select class="form-control" id="Lot">
-            <option value="value">text</option>
         </select>
     </div>
     <div class="col-md-2 text-right">
@@ -26,7 +25,6 @@
     </div>
     <div class="col-md-2">
         <select class="form-control" id="data-query">
-            <option value="value">text</option>
         </select>
     </div>
 </div>
@@ -66,12 +64,14 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
+            var Des = getCookie('Des');
+            $('#DES').val(Des);
             $.ajax({
                 type: "POST",
                 url: "/DataArchive/GetLot",
                 success: function (response) {
                     if (response != 'Failed') {
-                        var items = '';
+                        var items = '<option></option>';
                         $("#Lot").empty();
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
@@ -90,7 +90,7 @@
                 url: "/DataArchive/GetDataArchiveQuery",
                 success: function (response) {
                     if (response != 'Failed') {
-                        var items = '';
+                        var items = '<option></option>';
                         $("#data-query").empty();
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];

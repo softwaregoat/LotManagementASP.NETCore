@@ -42,7 +42,6 @@ namespace MVCCoreLoginRegister.Controllers
                 _context.SaveChanges();
                 //set the key value in Cookie  Username
                 Set("Username", user.Username, 60);
-                Set("Useremail", user.Email, 60);
                 return RedirectToAction(nameof(HomeController.JobBagOverview), "Home");
             }
             else
@@ -54,12 +53,15 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
-            var email = Get("Useremail");
-            var user = _context.TblUser.SingleOrDefault(u => u.Email == email);
-            user.Active = false;
-            _context.SaveChanges();
-            Remove("Username");
-            Remove("Useremail");
+            var Username = Get("Username");
+            if (Username != null)
+            {
+                var user = _context.TblUser.SingleOrDefault(u => u.Username == Username);
+                user.Active = false;
+                _context.SaveChanges();
+                Remove("Username");
+            }
+            
             return RedirectToAction("Login");
         }
         public ActionResult Register()

@@ -388,7 +388,11 @@
                 $("input").each(function () {
                     let n = $(this).attr("id");
                     let v = getCookie(n);
-                    $(this).val(v);
+                    if ($(this).attr('type') == 'checkbox') {
+                        $(this).prop('checked', v)
+                    } else {
+                        $(this).val(v);
+                    }
                 });
 
                 if (TechnologyID != null && Machine != null && LotID != null) {
@@ -469,8 +473,11 @@
                                 for (var i = 0; i < response.length; i++) {
                                     var em = response[i];
                                     items += "<option value='" + em.machineId + "'>" + em.machineName + "</option>";
+                                    setCookie('MachineID', response[0].machineId, 1);
+                                    setCookie('Machine', response[0].machineName, 1);
                                 }
                                 $('#Machine').html(items);
+                                
                                 toastr.success("Success for Machine");
                             }
                             else toastr.error(response);
@@ -490,8 +497,11 @@
                                 for (var i = 0; i < response.length; i++) {
                                     var em = response[i];
                                     items += "<option value='" + em.lotId + "'>" + em.lotName + "</option>";
+                                    setCookie('LotID', response[0].lotId, 1);
+                                    setCookie('Lot', response[0].lotName, 1);
                                 }
                                 $('#Lot').html(items);
+                                
                                 toastr.success("Success for Lot");
                             }
                             else toastr.error(response);
@@ -499,22 +509,36 @@
                     });
                 });
 
-                $('select').change(function () {
-                    let TechnologyID = $("#Technology").val();
-                    let Machine = $("#Machine option:selected").text();
-                    let MachineID = $("#Machine").val();
-                    let LotID = $("#Lot").val();
-                    let Lot = $("#Lot option:selected").text();
-                    setCookie('TechnologyID', TechnologyID, 1);
-                    setCookie('MachineID', MachineID, 1);
-                    setCookie('Machine', Machine, 1);
-                    setCookie('LotID', LotID, 1);
-                    setCookie('Lot', Lot, 1);
+                $('select').click(function () {
+                    var v = $(this).val();
+                    var t = $(this).find("option:selected").text();
+                    var id = $(this).attr('id');
+                    setCookie(id + 'ID', v, 1);
+                    setCookie(id, t, 1);
                     //getQryLot(Technology, Machine, Lot);
                 });
+                //let TechnologyID = $("#Technology").val();
+               
                 $('input').change(function () {
                     let v = $(this).val();
                     let n = $(this).attr('id');
+                    if ($(this).attr('type') == 'checkbox') {
+                        if ($(this).prop('checked')) {
+                            v = true;
+                        } else {
+                            v = false;
+                        }
+                    }
+                    setCookie(n, v, 1);
+                });
+                $('input[type="checkbox"]').click(function () {
+                    let v = $(this).val();
+                    let n = $(this).attr('id');
+                    if ($(this).prop('checked')) {
+                        v = true;
+                    } else {
+                        v = false;
+                    }
                     setCookie(n, v, 1);
                 });
             });
@@ -602,6 +626,6 @@
                     }
                 });
             }
-            timerDown('10:00', 'Account/Logout');
+            timerDown('10:00', '/Account/Logout');
         </script>
     }

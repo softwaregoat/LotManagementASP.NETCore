@@ -190,7 +190,7 @@
             $('#product').val(ProductName);
             $('#des').val(Des);
             var now = new Date();
-            let log = now.toLocaleString();
+            let log = now.toLocaleDateString("en-us");
             $('#date').val(log);
             let Lot = getCookie('Lot');
             $('#Lot').val(Lot);
@@ -216,6 +216,8 @@
                                 $($(tr).find('.masterbatch')).prop("disabled", true);
                                 $($(tr).find('.slip')).val(em.salot);
                                 $($(tr).find('.slip')).prop("disabled", true);
+
+                                $($(tr).find('.lot-update')).prop("disabled", true);
                                 $($(tr).find('.save')).prop("disabled", true);
                             }
                             toastr.success("Success for LineClearance");
@@ -236,31 +238,58 @@
             });
             $('input.save').click(function () {
                 let tr = $(this).closest('tr');
-                if ($(tr).find('input.date-time').val() == '') {
+
+                let time = $(tr).find('input.date-time').val();
+                let carton = $(tr).find('input.carton-no').val();
+                let polymer1 = $(tr).find('input.polymer1').val();
+                let polymer2 = $(tr).find('input.polymer2').val();
+                let masterbatch = $(tr).find('input.masterbatch').val();
+                let slip = $(tr).find('input.slip').val();
+
+                if (time == '' || time == undefined) {
                     toastr.warning('Date/Cat. Time is empty.');
                     return;
                 }
-                if ($(tr).find('input.carton-no').val() == '') {
+                if (carton == '' || carton == undefined) {
                     toastr.warning('Carton No is empty.');
                     return;
                 }
-                if ($(tr).find('input.polymer1').val() == '') {
+                if (polymer1 == '' || polymer1 == undefined) {
                     toastr.warning('Polymer 1 is empty.');
                     return;
                 }
-                if ($(tr).find('input.polymer2').val() == '') {
+                if (polymer2 == '' || polymer2 == undefined) {
                     toastr.warning('Polymer 2 is empty.');
                     return;
                 }
-                if ($(tr).find('input.masterbatch').val() == '') {
+                if (masterbatch == '' || masterbatch == undefined) {
                     toastr.warning('Master Batch is empty.');
                     return;
                 }
-                if ($(tr).find('input.slip').val() == '') {
+                if (slip == '' || slip == undefined) {
                     toastr.warning('Slip Additive is empty.');
                     return;
                 }
-                window.location.href = "/Home/JobBagOverview";
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductSetup/SaveMaterialLot",
+                    data: {
+                        'CartonNo': carton,
+                        'P1lot': polymer1,
+                        'P2lot': polymer2,
+                        'Mblot': masterbatch,
+                        'Salot': slip,
+                        'Mlctimestamp': time,
+                        'LotName': Lot,
+                        'Des': Des
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            toastr.success("Success to save MaterialLot");
+                        }
+                        else toastr.error(response);
+                    }
+                });
             });
 
             var timer2 = "5:00";

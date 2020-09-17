@@ -28,8 +28,8 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult LineClearance(string Lot)
         {
-            var lines = _context.TblLineClearance.Where(em => em.LotName == Lot);
-            //var lines = _context.TblLineClearance.ToList();
+            //var lines = _context.TblLineClearance.Where(em => em.LotName == Lot);
+            var lines = _context.TblLineClearance.ToList();
             if (lines!=null)
             {
                 return Json(lines);
@@ -49,6 +49,7 @@ namespace MVCCoreLoginRegister.Controllers
                 line.Qcrfid = QCRFID;
                 line.Qcusername = QCUsername;
                 line.LotName = LotName;
+                line.LogFile = true;
                 _context.TblLineClearance.Add(line);
                 _context.SaveChanges();
                 return Json("Success to save");
@@ -82,6 +83,7 @@ namespace MVCCoreLoginRegister.Controllers
                 em.Qcrfid = QCRFID;
                 em.Qcusername = QCUsername;
                 em.LotName = LotName;
+                em.LogFile = true;
                 _context.TblAuthorisationToRun.Add(em);
                 _context.SaveChanges();
                 return Json("Success to save");

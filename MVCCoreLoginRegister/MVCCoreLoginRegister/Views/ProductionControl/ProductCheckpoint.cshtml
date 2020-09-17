@@ -392,7 +392,7 @@
             $('#product').val(ProductName);
             $('#des').val(Des);
             var now = new Date();
-            let log = now.toLocaleString();
+            let log = now.toLocaleDateString("en-us");
             $('#date').val(log);
             let Lot = getCookie('Lot');
             $('#Lot').val(Lot);
@@ -513,36 +513,92 @@
                     window.location.href = "/Home/CavitationRecord";
                 }
             });
+            $('.cavities').change(function () {
+                var v = $(this).val();
+                if (parseInt(v) < 10) {
+                    window.location.href = "/Home/CavitationRecord";
+                }
+            });
             $('input.save').click(function () {
                 let tr = $(this).closest('tr');
-                if ($(tr).find('input.date-time').val() == '') {
+
+                let time = $(tr).find('.date-time').val();
+                let running = $(tr).find('.mc-running').val();
+
+                let carton = $(tr).find('.carton-no').val();
+                let cavities = $(tr).find('.cavities').val();
+                let weight = $(tr).find('.shot-weight').val();
+                let cycle = $(tr).find('.cycle').val();
+                let reject = $(tr).find('.reject').val();
+
+                let checkpoint = $(tr).find('label').text();
+                
+                if (time == '' || time == undefined) {
                     toastr.warning('Date/Cat. Time is empty.');
                     return;
                 }
-                if ($(tr).find('input.mc-running').val() == '') {
+                if (running == '' || time == undefined) {
                     toastr.warning('Mc Running is empty.');
                     return;
                 }
-                if ($(tr).find('input.carton-no').val() == '') {
+                if (carton == '' || carton == undefined) {
                     toastr.warning('Carton No is empty.');
                     return;
                 }
-                if ($(tr).find('input.cavities').val() == '') {
+                if (cavities == '' || cavities == undefined) {
                     toastr.warning('Active Cavities is empty.');
                     return;
                 }
-                if ($(tr).find('input.shot-weight').val() == '') {
+                if (weight == '' || weight == undefined) {
                     toastr.warning('Shot Weight is empty.');
                     return;
                 }
-                if ($(tr).find('input.cycle').val() == '') {
+                if (cycle == '' || cycle == undefined) {
                     toastr.warning('Cycle Count is empty.');
                     return;
                 }
-                if ($(tr).find('input.reject').val() == '') {
+                if (reject == '' || time == undefined) {
                     toastr.warning('Rejects is empty.');
                     return;
                 }
+                if (reject == "Yes") {
+                    reject = true;
+                }
+                else {
+                    reject = false;
+                }
+                if (running == "Yes") {
+                    running = true;
+                }
+                else {
+                    running = false;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "/ProductionControl/SaveProductCheckPoint",
+                    data: {
+                        LotName: Lot,
+                        Product: ProductName,
+                        Des: Des,
+                        CheckPoint: checkpoint,
+                        PcptimeStamp: time,
+                        McRunning: running,
+                        ActiveCavities: cavities,
+                        ShotWeight: weight,
+                        CycleCount: cycle,
+                        Rejects: reject,
+                        CartonNo: carton,
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            toastr.error('Success to save ProductCheckPoint');
+                        }
+                        else {
+                            toastr.error(response);
+                        }
+                    }
+                })
+
                 //window.location.href = "/Home/JobBagOverview";
             });
 
