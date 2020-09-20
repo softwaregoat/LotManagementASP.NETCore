@@ -32,7 +32,7 @@ namespace MVCCoreLoginRegister.Controllers
             {
                 return View(userModel);
             }
-            var user = _context.TblUser.SingleOrDefault(u => (u.Username == userModel.Username 
+            var user = _context.TblUser.SingleOrDefault(u => (u.Username == userModel.Username
                && u.Password == userModel.Password) || u.Rfid == userModel.Rfid
                );
             if (user != null)
@@ -50,7 +50,6 @@ namespace MVCCoreLoginRegister.Controllers
                 return View();
             }
         }
-        [HttpPost]
         public ActionResult Logout()
         {
             var Username = Get("Username");
@@ -61,7 +60,7 @@ namespace MVCCoreLoginRegister.Controllers
                 _context.SaveChanges();
                 Remove("Username");
             }
-            
+
             return RedirectToAction("Login");
         }
         public ActionResult Register()

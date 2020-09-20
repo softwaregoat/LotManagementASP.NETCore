@@ -17,13 +17,22 @@ namespace MVCCoreLoginRegister.Data
 
         public virtual DbSet<QryActiveCavitationRecords> QryActiveCavitationRecords { get; set; }
         public virtual DbSet<QryAuthorisationToRunRecords> QryAuthorisationToRunRecords { get; set; }
+        public virtual DbSet<QryCavitationRecordAction> QryCavitationRecordAction { get; set; }
+        public virtual DbSet<QryCavitationRecordReason> QryCavitationRecordReason { get; set; }
+        public virtual DbSet<QryDataArchiveQuery> QryDataArchiveQuery { get; set; }
         public virtual DbSet<QryFunctionalTestRecords> QryFunctionalTestRecords { get; set; }
         public virtual DbSet<QryLineClearanceRecords> QryLineClearanceRecords { get; set; }
         public virtual DbSet<QryLot> QryLot { get; set; }
+        public virtual DbSet<QryMachine> QryMachine { get; set; }
         public virtual DbSet<QryMachineDowntimeRecords> QryMachineDowntimeRecords { get; set; }
         public virtual DbSet<QryMaterialTraceabilityData> QryMaterialTraceabilityData { get; set; }
+        public virtual DbSet<QryProduct> QryProduct { get; set; }
         public virtual DbSet<QryProductCheckPointData> QryProductCheckPointData { get; set; }
+        public virtual DbSet<QryQualityRecordAction> QryQualityRecordAction { get; set; }
+        public virtual DbSet<QryQualityRecordObservation> QryQualityRecordObservation { get; set; }
         public virtual DbSet<QryQualityRecords> QryQualityRecords { get; set; }
+        public virtual DbSet<QryTechnology> QryTechnology { get; set; }
+        public virtual DbSet<QryUser> QryUser { get; set; }
         public virtual DbSet<TblAuthorisationToRun> TblAuthorisationToRun { get; set; }
         public virtual DbSet<TblCavitationRecord> TblCavitationRecord { get; set; }
         public virtual DbSet<TblCavitationRecordAction> TblCavitationRecordAction { get; set; }
@@ -49,6 +58,7 @@ namespace MVCCoreLoginRegister.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
+
                 optionsBuilder.UseSqlServer(Startup.ConnectionString);
             }
         }
@@ -62,22 +72,22 @@ namespace MVCCoreLoginRegister.Data
                 entity.ToView("qry_ActiveCavitationRecords");
 
                 entity.Property(e => e.Action)
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CavityId).HasColumnName("CavityID");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PcptimeStamp)
                     .HasColumnName("PCPTimeStamp")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.Reason)
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<QryAuthorisationToRunRecords>(entity =>
@@ -91,17 +101,62 @@ namespace MVCCoreLoginRegister.Data
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Qcusername)
                     .HasColumnName("QCUsername")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TechUsername)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<QryCavitationRecordAction>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_CavitationRecordAction");
+
+                entity.Property(e => e.CavitationRecordAction)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CavitationRecordActionId)
+                    .HasColumnName("CavitationRecordActionID")
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<QryCavitationRecordReason>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_CavitationRecordReason");
+
+                entity.Property(e => e.CavitationRecordReason)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CavitationRecordReasonId)
+                    .HasColumnName("CavitationRecordReasonID")
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<QryDataArchiveQuery>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_DataArchiveQuery");
+
+                entity.Property(e => e.DataArchiveQuery)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DataArchiveQueryId)
+                    .HasColumnName("DataArchiveQueryID")
+                    .ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<QryFunctionalTestRecords>(entity =>
@@ -110,30 +165,32 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.ToView("qry_FunctionalTestRecords");
 
+                entity.Property(e => e.Comment).IsUnicode(false);
+
                 entity.Property(e => e.Des)
                     .HasColumnName("DES")
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FttimeStamp)
                     .HasColumnName("FTTimeStamp")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ProductName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Result)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TestType)
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<QryLineClearanceRecords>(entity =>
@@ -147,17 +204,17 @@ namespace MVCCoreLoginRegister.Data
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Qcusername)
                     .HasColumnName("QCUsername")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.TechUsername)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<QryLot>(entity =>
@@ -168,8 +225,8 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Ca)
                     .HasColumnName("CA")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Caq).HasColumnName("CAQ");
 
@@ -177,8 +234,8 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Cl)
                     .HasColumnName("CL")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Clq).HasColumnName("CLQ");
 
@@ -188,8 +245,8 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Col)
                     .HasColumnName("COL")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Cph)
                     .HasColumnName("CPH")
@@ -201,8 +258,12 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Des)
                     .HasColumnName("DES")
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Dwg)
+                    .HasColumnName("DWG")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ens).HasColumnName("ENS");
 
@@ -210,8 +271,8 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Ib)
                     .HasColumnName("IB")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Ibq).HasColumnName("IBQ");
 
@@ -226,59 +287,63 @@ namespace MVCCoreLoginRegister.Data
                 entity.Property(e => e.LotId).HasColumnName("LotID");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MachineName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Mb)
                     .HasColumnName("MB")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Mbq).HasColumnName("MBQ");
 
                 entity.Property(e => e.P1)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.P1q).HasColumnName("P1Q");
 
                 entity.Property(e => e.P2)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.P2q).HasColumnName("P2Q");
 
                 entity.Property(e => e.Pa)
                     .HasColumnName("PA")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Paq).HasColumnName("PAQ");
 
                 entity.Property(e => e.Por).HasColumnName("POR");
 
-                entity.Property(e => e.Pph)
-                    .HasColumnName("PPH")
-                    .HasColumnType("decimal(18, 0)");
-
                 entity.Property(e => e.Pps)
                     .HasColumnName("PPS")
                     .HasColumnType("decimal(18, 1)");
 
+                entity.Property(e => e.Pqis)
+                    .HasColumnName("PQIS")
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ProductName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ps)
+                    .HasColumnName("PS")
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Rtq).HasColumnName("RTQ");
 
                 entity.Property(e => e.Sa)
                     .HasColumnName("SA")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Saq).HasColumnName("SAQ");
 
@@ -287,13 +352,30 @@ namespace MVCCoreLoginRegister.Data
                 entity.Property(e => e.Sts).HasColumnName("STS");
 
                 entity.Property(e => e.TechnologyName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Tol)
                     .HasColumnName("TOL")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<QryMachine>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_Machine");
+
+                entity.Property(e => e.MachineId)
+                    .HasColumnName("MachineID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.MachineName)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.TechnologyId).HasColumnName("TechnologyID");
             });
 
             modelBuilder.Entity<QryMachineDowntimeRecords>(entity =>
@@ -302,9 +384,11 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.ToView("qry_MachineDowntimeRecords");
 
+                entity.Property(e => e.Comment).IsUnicode(false);
+
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PcptimeStamp)
                     .HasColumnName("PCPTimeStamp")
@@ -319,17 +403,17 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Des)
                     .HasColumnName("DES")
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Mblot)
                     .HasColumnName("MBLot")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MlctimeStamp)
                     .HasColumnName("MLCTimeStamp")
@@ -337,22 +421,148 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.P1lot)
                     .HasColumnName("P1Lot")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.P2lot)
                     .HasColumnName("P2Lot")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ProductName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Salot)
                     .HasColumnName("SALot")
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<QryProduct>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_Product");
+
+                entity.Property(e => e.Ca)
+                    .HasColumnName("CA")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Caq).HasColumnName("CAQ");
+
+                entity.Property(e => e.Cav).HasColumnName("CAV");
+
+                entity.Property(e => e.Cl)
+                    .HasColumnName("CL")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Clq).HasColumnName("CLQ");
+
+                entity.Property(e => e.Coa).HasColumnName("COA");
+
+                entity.Property(e => e.Coc).HasColumnName("COC");
+
+                entity.Property(e => e.Col)
+                    .HasColumnName("COL")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Cph)
+                    .HasColumnName("CPH")
+                    .HasColumnType("decimal(18, 1)");
+
+                entity.Property(e => e.Cyc)
+                    .HasColumnName("CYC")
+                    .HasColumnType("decimal(18, 1)");
+
+                entity.Property(e => e.Des)
+                    .HasColumnName("DES")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Dwg)
+                    .HasColumnName("DWG")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ens).HasColumnName("ENS");
+
+                entity.Property(e => e.Fut).HasColumnName("FUT");
+
+                entity.Property(e => e.Ib)
+                    .HasColumnName("IB")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ibq).HasColumnName("IBQ");
+
+                entity.Property(e => e.Mb)
+                    .HasColumnName("MB")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Mbq).HasColumnName("MBQ");
+
+                entity.Property(e => e.P1)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.P1q).HasColumnName("P1Q");
+
+                entity.Property(e => e.P2)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.P2q).HasColumnName("P2Q");
+
+                entity.Property(e => e.Pa)
+                    .HasColumnName("PA")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Paq).HasColumnName("PAQ");
+
+                entity.Property(e => e.Por).HasColumnName("POR");
+
+                entity.Property(e => e.Pps)
+                    .HasColumnName("PPS")
+                    .HasColumnType("decimal(18, 1)");
+
+                entity.Property(e => e.Pqis)
+                    .HasColumnName("PQIS")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ProduceId)
+                    .HasColumnName("ProduceID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.ProductName)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ps)
+                    .HasColumnName("PS")
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rtq).HasColumnName("RTQ");
+
+                entity.Property(e => e.Sa)
+                    .HasColumnName("SA")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Saq).HasColumnName("SAQ");
+
+                entity.Property(e => e.Spc).HasColumnName("SPC");
+
+                entity.Property(e => e.Sts).HasColumnName("STS");
+
+                entity.Property(e => e.Tol)
+                    .HasColumnName("TOL")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<QryProductCheckPointData>(entity =>
@@ -363,22 +573,52 @@ namespace MVCCoreLoginRegister.Data
 
                 entity.Property(e => e.Des)
                     .HasColumnName("DES")
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PcptimeStamp)
                     .HasColumnName("PCPTimeStamp")
                     .HasColumnType("datetime");
 
                 entity.Property(e => e.ProductName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ShotWeight).HasColumnType("decimal(18, 2)");
+            });
+
+            modelBuilder.Entity<QryQualityRecordAction>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_QualityRecordAction");
+
+                entity.Property(e => e.QualityRecordAction)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QualityRecordActionId)
+                    .HasColumnName("QualityRecordActionID")
+                    .ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<QryQualityRecordObservation>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_QualityRecordObservation");
+
+                entity.Property(e => e.QualityRecordObservation)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.QualityRecordObservationId)
+                    .HasColumnName("QualityRecordObservationID")
+                    .ValueGeneratedOnAdd();
             });
 
             modelBuilder.Entity<QryQualityRecords>(entity =>
@@ -388,22 +628,67 @@ namespace MVCCoreLoginRegister.Data
                 entity.ToView("qry_QualityRecords");
 
                 entity.Property(e => e.Action)
-                    .HasMaxLength(30)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CavityId).HasColumnName("CavityID");
 
                 entity.Property(e => e.LotName)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Observation)
-                    .HasMaxLength(20)
-                    .IsFixedLength();
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.PcptimeStamp)
                     .HasColumnName("PCPTimeStamp")
                     .HasColumnType("datetime");
+            });
+
+            modelBuilder.Entity<QryTechnology>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_Technology");
+
+                entity.Property(e => e.TechnologyId)
+                    .HasColumnName("TechnologyID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.TechnologyName)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<QryUser>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToView("qry_User");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.LastLoginDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rfid)
+                    .HasColumnName("RFID")
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(8000)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TblAuthorisationToRun>(entity =>

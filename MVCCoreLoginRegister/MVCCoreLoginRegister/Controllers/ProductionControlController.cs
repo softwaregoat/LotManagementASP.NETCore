@@ -93,7 +93,7 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
-        public ActionResult SaveFunctionalTest(int CartonNo, string Comment, string Des, string FttimeStamp, 
+        public ActionResult SaveFunctionalTest(int CartonNo, string Comment, string Des, string FttimeStamp,
             string LotName, string Product, string Result, int SampleSize, string TestType)
         {
             try

@@ -3,14 +3,9 @@ using System.Collections.Generic;
 
 namespace MVCCoreLoginRegister.Data
 {
-    public partial class QryLot
+    public partial class QryProduct
     {
-        public int LotId { get; set; }
-        public string LotName { get; set; }
-        public string TechnologyName { get; set; }
-        public string MachineName { get; set; }
-        public decimal? Loq { get; set; }
-        public decimal? Loh { get; set; }
+        public int ProduceId { get; set; }
         public string ProductName { get; set; }
         public string Des { get; set; }
         public string Col { get; set; }

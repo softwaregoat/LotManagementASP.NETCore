@@ -28,9 +28,9 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult LineClearance(string Lot)
         {
-            //var lines = _context.TblLineClearance.Where(em => em.LotName == Lot);
-            var lines = _context.TblLineClearance.ToList();
-            if (lines!=null)
+            var lines = _context.TblLineClearance.Where(em => em.LotName == Lot);
+            //var lines = _context.TblLineClearance.ToList();
+            if (lines != null)
             {
                 return Json(lines);
             }
@@ -62,8 +62,8 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult AuthorisationToRun(string Lot)
         {
-            //var lines = _context.TblAuthorisationToRun.Where(em => em.LotName == Lot);
-            var lines = _context.TblAuthorisationToRun.ToList();
+            var lines = _context.TblAuthorisationToRun.Where(em => em.LotName == Lot);
+            //var lines = _context.TblAuthorisationToRun.ToList();
             if (lines != null)
             {
                 return Json(lines);
@@ -96,8 +96,8 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult MaterialLot(string Lot)
         {
-            //var lines = _context.TblMaterialLotControl.Where(em => em.LotName == Lot);
-            var lines = _context.TblMaterialLotControl.ToList();
+            var lines = _context.TblMaterialLotControl.Where(em => em.LotName == Lot);
+            //var lines = _context.TblMaterialLotControl.ToList();
             if (lines != null)
             {
                 return Json(lines);

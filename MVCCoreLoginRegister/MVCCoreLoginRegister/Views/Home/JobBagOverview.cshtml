@@ -384,6 +384,7 @@
                 let TechnologyID = getCookie('TechnologyID');
                 let Machine = getCookie('Machine');
                 let LotID = getCookie('LotID');
+                let Lot = getCookie('Lot');
                 let MachineID = getCookie('MachineID');
                 $("input").each(function () {
                     let n = $(this).attr("id");
@@ -401,7 +402,7 @@
                         url: "/Home/GetTechnology",
                         success: function (response) {
                             if (response != 'Failed') {
-                                var items = '';
+                                var items = '<option>Select a Technology</option>';
                                 $("#Technology").empty();
                                 for (var i = 0; i < response.length; i++) {
                                     var em = response[i];
@@ -421,7 +422,7 @@
                             data: { 'TechnologyID': TechnologyID },
                             success: function (response) {
                                 if (response != 'Failed') {
-                                    var items = '';
+                                    var items = '<option>Select a Machine</option>';
                                     $("#Machine").empty();
                                     for (var i = 0; i < response.length; i++) {
                                         var em = response[i];
@@ -442,7 +443,7 @@
                             data: { 'Machine': Machine },
                             success: function (response) {
                                 if (response != 'Failed') {
-                                    var items = '';
+                                    var items = '<option>Select a Lot</option>';
                                     $("#Lot").empty();
                                     for (var i = 0; i < response.length; i++) {
                                         var em = response[i];
@@ -468,7 +469,7 @@
                         data: { 'TechnologyID': TechnologyID },
                         success: function (response) {
                             if (response != 'Failed') {
-                                var items = '';
+                                var items = '<option>Select a Machine</option>';
                                 $("#Machine").empty();
                                 for (var i = 0; i < response.length; i++) {
                                     var em = response[i];
@@ -477,7 +478,7 @@
                                     setCookie('Machine', response[0].machineName, 1);
                                 }
                                 $('#Machine').html(items);
-                                
+                                $('#Lot').html('<option>Select a Lot</option>');
                                 toastr.success("Success for Machine");
                             }
                             else toastr.error(response);
@@ -492,7 +493,7 @@
                         data: { 'Machine': Machine },
                         success: function (response) {
                             if (response != 'Failed') {
-                                var items = '';
+                                var items = '<option>Select a Lot</option>';
                                 $("#Lot").empty();
                                 for (var i = 0; i < response.length; i++) {
                                     var em = response[i];
@@ -501,7 +502,6 @@
                                     setCookie('Lot', response[0].lotName, 1);
                                 }
                                 $('#Lot').html(items);
-                                
                                 toastr.success("Success for Lot");
                             }
                             else toastr.error(response);
@@ -509,13 +509,57 @@
                     });
                 });
 
-                $('select').click(function () {
+                $('select').change(function () {
                     var v = $(this).val();
                     var t = $(this).find("option:selected").text();
                     var id = $(this).attr('id');
                     setCookie(id + 'ID', v, 1);
                     setCookie(id, t, 1);
-                    //getQryLot(Technology, Machine, Lot);
+                    $('#ProductName').val('');
+                    $('#Des').val('');
+                    $('#Tol').val('');
+                    $('#Cav').val('');
+                    $('#Loq').val('');
+                    $('#Cph').val('');
+                    $('#Pps').val('');
+                    $('#Loh').val('');
+                    $('#P1').val('');
+                    $('#P1q').val('');
+                    $('#P2').val('');
+                    $('#P2q').val('');
+                    $('#Mb').val('');
+                    $('#Mbq').val('');
+                    $('#Sa').val('');
+                    $('#Saq').val('');
+                    $('#Pa').val('');
+                    $('#Paq').val('');
+                    $('#Ca').val('');
+                    $('#Caq').val('');
+                    $('#Cl').val('');
+                    $('#Clq').val('');
+                    $('#lb').val('');
+                    $('#lbq').val('');
+
+                    $('#Rtq').prop('checked', false);
+
+                    $('#Fut').prop('checked', false);
+
+                    $('#Sts').prop('checked', false);
+
+                    $('#Ens').prop('checked', false);
+
+                    $('#Coc').prop('checked', false);
+
+                    $('#Coa').prop('checked', false);
+
+                    $('#Spc').prop('checked', false);
+
+                    $('#Por').prop('checked', false);
+
+                    Technology = $('#Technology option:selected').text();
+                    Machine = $('#Machine option:selected').text();
+                    Lot = $('#Lot option:selected').text();
+                    getQryLot(Technology, Machine, Lot);
                 });
                 //let TechnologyID = $("#Technology").val();
                
@@ -624,8 +668,22 @@
                     error: function (response) {
                         toastr.error(response.responseText);
                     }
+                }).done(function () {
+                    $('input').each(function () {
+                        let v = $(this).val();
+                        let n = $(this).attr('id');
+                        if ($(this).attr('type') == 'checkbox') {
+                            if ($(this).prop('checked')) {
+                                v = true;
+                            } else {
+                                v = false;
+                            }
+                        }
+                        setCookie(n, v, 1);
+                    });
                 });
+
             }
-            timerDown('10:00', '/Account/Logout');
+            timerDown('10:30', '/Account/Logout');
         </script>
     }
