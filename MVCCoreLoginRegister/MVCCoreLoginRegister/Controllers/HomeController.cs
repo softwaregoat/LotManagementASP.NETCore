@@ -105,6 +105,26 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
+        public IActionResult QualityRecordAction()
+        {
+            var Techs = _context.TblQualityRecordAction.ToList();
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
+        public IActionResult QualityRecordObservation()
+        {
+            var Techs = _context.TblQualityRecordObservation.ToList();
+            if (Techs != null)
+            {
+                return Json(Techs);
+            }
+            return Json("Failed");
+        }
+        [HttpPost]
         public IActionResult SaveMachineDowntimeRecord(string Lot, string time, string cav, string comment)
         {
             try

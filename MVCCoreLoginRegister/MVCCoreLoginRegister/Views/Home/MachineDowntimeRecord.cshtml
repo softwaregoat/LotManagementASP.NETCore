@@ -88,7 +88,8 @@
                     success: function (response) {
                         if (response != 'Failed') {
                             toastr.success("Success to save MachineDown Time Record");
-                            window.location.href = "/ProductionControl/ProductCheckpoint";
+                            window.history.back();
+                            //window.location.href = "/ProductionControl/ProductCheckpoint";
                         }
                         else toastr.error(response);
                     }

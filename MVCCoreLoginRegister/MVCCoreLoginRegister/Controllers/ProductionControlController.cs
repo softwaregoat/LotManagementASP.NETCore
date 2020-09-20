@@ -23,8 +23,8 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult ProductCheckPoint(string Lot)
         {
-            //var lines = _context.TblProductCheckPoint.Where(em => em.LotName == Lot);
-            var lines = _context.TblProductCheckPoint.ToList();
+            var lines = _context.TblProductCheckPoint.Where(em => em.LotName == Lot);
+            //var lines = _context.TblProductCheckPoint.ToList();
             if (lines != null)
             {
                 return Json(lines);

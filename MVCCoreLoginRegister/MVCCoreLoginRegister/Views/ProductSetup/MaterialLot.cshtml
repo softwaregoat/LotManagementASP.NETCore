@@ -258,18 +258,7 @@
                     toastr.warning('Polymer 1 is empty.');
                     return;
                 }
-                if (polymer2 == '' || polymer2 == undefined) {
-                    toastr.warning('Polymer 2 is empty.');
-                    return;
-                }
-                if (masterbatch == '' || masterbatch == undefined) {
-                    toastr.warning('Master Batch is empty.');
-                    return;
-                }
-                if (slip == '' || slip == undefined) {
-                    toastr.warning('Slip Additive is empty.');
-                    return;
-                }
+               
                 $.ajax({
                     type: "POST",
                     url: "/ProductSetup/SaveMaterialLot",
@@ -286,6 +275,7 @@
                     success: function (response) {
                         if (response != 'Failed') {
                             toastr.success("Success to save MaterialLot");
+                            window.location.href = "/Home/JobBagOverview";
                         }
                         else toastr.error(response);
                     }

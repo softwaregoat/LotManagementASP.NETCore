@@ -14,8 +14,15 @@ function timerDown(timer2, url = '') {
         $('#timeout').html('Exiting Page in ' + minutes + 'm:' + seconds + 's');
         timer2 = minutes + ':' + seconds;
         if (minutes == 0 && seconds == '00') {
-            if (url == '/Account/Logout') $('#logout').click();
-            if(url != '') window.location.href = url
+            if (url == '/Account/Logout') {
+                $('#logout').click();
+                return;
+            }
+            if (url == '/ProductionControl/ProductCheckpoint') {
+                window.history.back();
+                return;
+            }
+            if (url != '') window.location.href = url
         }
     }, 1000);
 }
