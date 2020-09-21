@@ -396,55 +396,55 @@
             $('#date').val(log);
             let Lot = getCookie('Lot');
             $('#Lot').val(Lot);
-                $.ajax({
-                    type: "POST",
-                    url: "/ProductionControl/ProductCheckPoint",
-                    data: { 'Lot': Lot },
-                    success: function (response) {
-                        if (response != 'Failed') {
-                            let trs = $('tbody tr');
-                            for (var i = 0; i < response.length; i++) {
-                                var em = response[i];
-                                let tr = trs[i];
-                                $($(tr).find('.date-time')).val(em.pcptimeStamp);
-                                $($(tr).find('.date-time')).prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                url: "/ProductionControl/ProductCheckPoint",
+                data: { 'Lot': Lot },
+                success: function (response) {
+                    if (response != 'Failed') {
+                        let trs = $('tbody tr');
+                        for (var i = 0; i < response.length; i++) {
+                            var em = response[i];
+                            let tr = trs[i];
+                            $($(tr).find('.date-time')).val(em.pcptimeStamp);
+                            $($(tr).find('.date-time')).prop("disabled", true);
 
-                                if (em.mcRunning) {
-                                    $($(tr).find('.mc-running')).val('Yes')
-                                }
-                                else {
-                                    $($(tr).find('.mc-running')).val('No')
-                                }
-                                $($(tr).find('.mc-running')).prop("disabled", true);
-
-                                $($(tr).find('.carton-no')).val(em.cartonNo);
-                                $($(tr).find('.carton-no')).prop("disabled", true);
-
-                                $($(tr).find('.cavities')).val(em.activeCavities);
-                                $($(tr).find('.cavities')).prop("disabled", true);
-
-                                $($(tr).find('.shot-weight')).val(em.shotWeight);
-                                $($(tr).find('.shot-weight')).prop("disabled", true);
-
-                                $($(tr).find('.cycle')).val(em.cycleCount);
-                                $($(tr).find('.cycle')).prop("disabled", true);
-
-                                if (em.rejects) {
-                                    $($(tr).find('.reject')).val('Yes')
-                                }
-                                else {
-                                    $($(tr).find('.reject')).val('No')
-                                }
-                                $($(tr).find('.reject')).prop("disabled", true);
-
-                                $($(tr).find('.save')).prop("disabled", true);
-                                $($(tr).find('.lot-update')).prop("disabled", true);
+                            if (em.mcRunning) {
+                                $($(tr).find('.mc-running')).val('Yes')
                             }
-                            toastr.success("Success for LineClearance");
+                            else {
+                                $($(tr).find('.mc-running')).val('No')
+                            }
+                            $($(tr).find('.mc-running')).prop("disabled", true);
+
+                            $($(tr).find('.carton-no')).val(em.cartonNo);
+                            $($(tr).find('.carton-no')).prop("disabled", true);
+
+                            $($(tr).find('.cavities')).val(em.activeCavities);
+                            $($(tr).find('.cavities')).prop("disabled", true);
+
+                            $($(tr).find('.shot-weight')).val(em.shotWeight);
+                            $($(tr).find('.shot-weight')).prop("disabled", true);
+
+                            $($(tr).find('.cycle')).val(em.cycleCount);
+                            $($(tr).find('.cycle')).prop("disabled", true);
+
+                            if (em.rejects) {
+                                $($(tr).find('.reject')).val('Yes')
+                            }
+                            else {
+                                $($(tr).find('.reject')).val('No')
+                            }
+                            $($(tr).find('.reject')).prop("disabled", true);
+
+                            $($(tr).find('.save')).prop("disabled", true);
+                            $($(tr).find('.lot-update')).prop("disabled", true);
                         }
-                        else toastr.error(response);
+                        toastr.success("Success for ProductCheckPoint");
                     }
-                });
+                    else toastr.error(response);
+                }
+            });
             $('input.lot-update').click(function () {
                 if ($(this).prop('checked')) {
                     var now = new Date();
@@ -455,7 +455,7 @@
                     $.ajax({
                         type: "POST",
                         url: "/ProductSetup/LineClearance",
-                        data: { 'Lot': $('#Lot option:selected').text() },
+                        data: { 'Lot': Lot },
                         success: function (response) {
                             if (response != 'Failed') {
                                 if (response.length == 0) {
@@ -463,6 +463,28 @@
                                     $(tick).closest('tr').find('input.date-time').val('');
                                     toastr.error('please complete Line Clearance');
                                     window.location.href = "/ProductSetup/LineClearance";
+                                } else {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/ProductSetup/AuthorisationToRun",
+                                        data: { 'Lot': Lot },
+                                        success: function (response) {
+                                            if (response != 'Failed') {
+                                                if (response.length == 0) {
+                                                    $(tick).prop('checked', false);
+                                                    $(tick).closest('tr').find('input.date-time').val('');
+                                                    toastr.error('please complete Authorisation To Run');
+                                                    window.location.href = "/ProductSetup/Authorisation";
+                                                }
+                                            }
+                                            else {
+                                                $(tick).prop('checked', false);
+                                                $(tick).closest('tr').find('input.date-time').val('');
+                                                toastr.error('please complete Authorisation To Run');
+                                                window.location.href = "/ProductSetup/Authorisation";
+                                            }
+                                        }
+                                    });
                                 }
                             }
                             else {
@@ -472,28 +494,6 @@
                                 window.location.href = "/ProductSetup/LineClearance";
                             }
                         }
-                    }).done(function (data) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/ProductSetup/AuthorisationToRun",
-                            data: { 'Lot': $('#Lot option:selected').text() },
-                            success: function (response) {
-                                if (response != 'Failed') {
-                                    if (response.length == 0) {
-                                        $(tick).prop('checked', false);
-                                        $(tick).closest('tr').find('input.date-time').val('');
-                                        toastr.error('please complete Authorisation To Run');
-                                        window.location.href = "/ProductSetup/Authorisation";
-                                    }
-                                }
-                                else {
-                                    $(tick).prop('checked', false);
-                                    $(tick).closest('tr').find('input.date-time').val('');
-                                    toastr.error('please complete Authorisation To Run');
-                                    window.location.href = "/ProductSetup/Authorisation";
-                                }
-                            }
-                        })
                     });
                 }
                 else {

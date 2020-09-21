@@ -48,12 +48,106 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
-        public IActionResult DataQuery(string Query)
+        public IActionResult DataQuery(int Query)
         {
-            var Lots = _context.TblDataArchiveQuery.ToList();
-            if (Lots != null)
+            switch (Query)
             {
-                return Json(Lots);
+                case 1:
+                    return QryLineClearance();
+                case 2:
+                    return QryAuthorisation();
+                case 3:
+                    return QryProductCheckPoint();
+                case 4:
+                    return QryMaterial();
+                case 5:
+                    return QryQuality();
+                case 6:
+                    return QryCavitation();
+                case 7:
+                    return QryMachine();
+                case 8:
+                    return QryFunctional();
+                default:
+                    break;
+            }
+            return Json("Failed");
+        }
+        public IActionResult QryLineClearance()
+        {
+            var ems = _context.QryLineClearanceRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+        public IActionResult QryAuthorisation()
+        {
+            var ems = _context.QryAuthorisationToRunRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryProductCheckPoint()
+        {
+            var ems = _context.QryProductCheckPointData.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryMaterial()
+        {
+            var ems = _context.QryMaterialTraceabilityData.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryQuality()
+        {
+            var ems = _context.QryQualityRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryCavitation()
+        {
+            var ems = _context.QryActiveCavitationRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryMachine()
+        {
+            var ems = _context.QryMachineDowntimeRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryFunctional()
+        {
+            var ems = _context.QryFunctionalTestRecords.ToList();
+            if (ems != null)
+            {
+                return Json(ems);
             }
             return Json("Failed");
         }

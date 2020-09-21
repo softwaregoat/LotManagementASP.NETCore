@@ -36,42 +36,18 @@
         <thead>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
         </tbody>
     </table>
 </div>
 @section Scripts {
     <script>
         $(document).ready(function () {
-            var Des = getCookie('Des');
-            $('#DES').val(Des);
             $.ajax({
                 type: "POST",
                 url: "/DataArchive/GetLot",
                 success: function (response) {
                     if (response != 'Failed') {
-                        var items = '<option></option>';
+                        var items = '<option>Select Lot</option>';
                         $("#Lot").empty();
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
@@ -90,17 +66,17 @@
                 url: "/DataArchive/GetDataArchiveQuery",
                 success: function (response) {
                     if (response != 'Failed') {
-                        var items = '<option></option>';
+                        var items = '<option>Select Data Query</option>';
                         $("#data-query").empty();
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
                             items += "<option value='" + em.dataArchiveQueryId + "'>" + em.dataArchiveQuery + "</option>";
                         }
                         $('#data-query').html(items);
-                        toastr.success("Success for Lot");
+                        toastr.success("Success for Data Archive Query");
                     }
                     else {
-                        toastr.error('Failed for Lot');
+                        toastr.error('Failed for  Data Archive Query');
                     }
                 }
             });
@@ -115,7 +91,7 @@
                             toastr.success("Success for Product Description");
                         }
                         else {
-                            toastr.error('Failed for Lot');
+                            toastr.error('Failed for  Product Description');
                         }
                     }
                 });
@@ -127,11 +103,33 @@
                     data: { 'Query': $('#data-query').val() },
                     success: function (response) {
                         if (response != 'Failed') {
-                            $('#DES').val(response.productName);
-                            toastr.success("Success for Product Description");
+                            $('thead').empty();
+                            var header = '';
+                            if (response.length > 0) {
+                                var em = response[0];
+                                var keys = Object.keys(em);
+                                for (var i = 0; i < keys.length; i++) {
+                                    header += '<th>' + keys[i] + '</th>';
+                                }
+                                $('thead').html(header);
+                            }
+                            $('tbody').empty();
+                            var tbody = '';
+                            for (var i = 0; i < response.length; i++) {
+                                var em = response[i];
+                                var tr = '<tr>';
+                                var vals = Object.values(em);
+                                for (var i = 0; i < vals.length; i++) {
+                                    tr += '<td>' + vals[i] + '</td>';
+                                }
+                                tr += '</tr>';
+                                tbody += tr;
+                            }
+                            $('tbody').html(tbody);
+                            toastr.success("Success for " + $('#data-query option:selected').text());
                         }
                         else {
-                            toastr.error('Failed for Lot');
+                            toastr.error('Failed for ' + $('#data-query option:selected').text());
                         }
                     }
                 });

@@ -64,8 +64,8 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult FunctionalTest(string Lot)
         {
-            //var lines = _context.TblFunctionalTest.Where(em => em.LotName == Lot);
-            var lines = _context.TblFunctionalTest.ToList();
+            var lines = _context.TblFunctionalTest.Where(em => em.LotName == Lot);
+            //var lines = _context.TblFunctionalTest.ToList();
             if (lines != null)
             {
                 return Json(lines);
@@ -85,6 +85,7 @@ namespace MVCCoreLoginRegister.Controllers
         [HttpPost]
         public ActionResult FunctionalTestResult()
         {
+
             var lines = _context.TblFunctionalTestResult.ToList();
             if (lines != null)
             {
