@@ -530,7 +530,6 @@
             $('#checkpoint').val(checkpoint);
             $('#cavitation').val(cavitation);
             $('#Lot').val(Lot);
-
             $.ajax({
                 type: "POST",
                 url: "/Home/QualityRecordObservation",
@@ -539,7 +538,7 @@
                         var items = '<option></option>';
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
-                            items += "<option value='" + em.cavitationRecordReasonId + "'>" + em.cavitationRecordReason + "</option>";
+                            items += "<option value='" + em.qualityRecordObservationId + "'>" + em.qualityRecordObservation + "</option>";
                         }
                         $('.reason').each(function (i, em) {
                             $(this).html(items);
@@ -557,7 +556,7 @@
                         var items = '<option></option>';
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
-                            items += "<option value='" + em.cavitationRecordActionId + "'>" + em.cavitationRecordAction + "</option>";
+                            items += "<option value='" + em.qualityRecordActionId + "'>" + em.qualityRecordAction + "</option>";
                         }
                         $('.action').each(function (i, em) {
                             $(this).html(items);
@@ -567,8 +566,6 @@
                     else toastr.error(response);
                 }
             });
-
-
 
             $('input.defect').click(function () {
                 if ($(this).prop('checked')) {
@@ -585,38 +582,53 @@
                     window.location.href = "/ProductSetup/Authorisation";
                 }
             });
-            $('input.save').click(function () {
-                let tr = $(this).closest('tr');
-                if ($(tr).find('input.date-time').val() == '') {
-                    toastr.warning('Date/Cat. Time is empty.');
-                    return;
-                }
-                if ($(tr).find('input.mc-running').val() == '') {
-                    toastr.warning('Mc Running is empty.');
-                    return;
-                }
-                if ($(tr).find('input.carton-no').val() == '') {
-                    toastr.warning('Carton No is empty.');
-                    return;
-                }
-                if ($(tr).find('input.cavities').val() == '') {
-                    toastr.warning('Active Cavities is empty.');
-                    return;
-                }
-                if ($(tr).find('input.shot-weight').val() == '') {
-                    toastr.warning('Shot Weight is empty.');
-                    return;
-                }
-                if ($(tr).find('input.cycle').val() == '') {
-                    toastr.warning('Cycle Count is empty.');
-                    return;
-                }
-                if ($(tr).find('input.reject').val() == '') {
-                    toastr.warning('Rejects is empty.');
-                    return;
-                }
-                window.history.back();
-                //window.location.href = "/Home/JobBagOverview";
+            $('#save').click(function () {
+                let data = [];
+                $('.defect').each(function (i, em) {
+                    if ($(this).prop('checked')) {
+                        let tr = $(this).closest('tr');
+                        let c = $(tr).find('label').text();
+                        
+                        let q = $(tr).find('.reason').val();
+                        let a = $(tr).find('.action').val();
+
+                        if (q == '') {
+                            toastr.warning(c + ' is not completed.');
+                            return;
+                        }
+                        if (a == '') {
+                            toastr.warning(c + ' is not completed.');
+                            return;
+                        }
+                        c = c.replace('Cavity ', '');
+                        c = parseInt(c);
+                        //string LotName, string PcptimeStamp, string Cav, int CavityId, string Observation, string Action
+                        let temp = {
+                            LotName: Lot,
+                            PcptimeStamp: checkpoint,
+                            Cav: cavitation,
+                            CavityId: c,
+                            Observation: q,
+                            Action: a
+                        };
+                        data[i] = temp;
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveQualityRecord",
+                    data: {
+                        data: data
+                    },
+                    success: function (response) {
+                        if (response != 'Failed') {
+                            toastr.success("Success to save Quality Record");
+                        }
+                        else toastr.error(response);
+                    }
+                });
+
+                //window.history.back();
             });
 
             var timer2 = "0:30";

@@ -639,9 +639,6 @@
                     else toastr.error(response);
                 }
             });
-
-
-
             $('input.defect').click(function () {
                 if ($(this).prop('checked')) {
                     let cvt = $(this).closest('tr').find('label').text();
@@ -687,6 +684,7 @@
                     toastr.warning('Rejects is empty.');
                     return;
                 }
+
                 window.history.back();
             });
 

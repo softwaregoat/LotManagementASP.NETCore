@@ -125,6 +125,60 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
+        public IActionResult SaveQualityRecord(IEnumerable<QualityRecord> data)
+        {
+            try
+            {
+                foreach (var r in data)
+                {
+                    var record = new TblQualityRecord();
+                    record.LotName = r.LotName;
+                    record.PcptimeStamp = Convert.ToDateTime(r.PcptimeStamp);
+                    record.Cav = r.Cav;
+                    record.CavityId = r.CavityId;
+                    record.Observation = r.Observation;
+                    record.Action = r.Action;
+                    record.CurrentDate = DateTime.Now;
+                    record.LogFile = true;
+                    _context.TblQualityRecord.Add(record);
+                    _context.SaveChanges();
+                }
+                
+                return Json("Success");
+            }
+            catch (Exception)
+            {
+                return Json("Failed");
+            }
+        }
+        [HttpPost]
+        public IActionResult SaveCavityRecord(IEnumerable<CavityRecord> data)
+        {
+            try
+            {
+                foreach (var r in data)
+                {
+                    var record = new TblCavitationRecord();
+                    record.LotName = r.LotName;
+                    record.PcptimeStamp = Convert.ToDateTime(r.PcptimeStamp);
+                    record.Cav = r.Cav;
+                    record.CavityId = r.CavityId;
+                    record.Reason = r.Reason;
+                    record.Action = r.Action;
+                    record.CurrentDate = DateTime.Now;
+                    record.LogFile = true;
+                    _context.TblCavitationRecord.Add(record);
+                    _context.SaveChanges();
+                }
+
+                return Json("Success");
+            }
+            catch (Exception)
+            {
+                return Json("Failed");
+            }
+        }
+        [HttpPost]
         public IActionResult SaveMachineDowntimeRecord(string Lot, string time, string cav, string comment)
         {
             try
