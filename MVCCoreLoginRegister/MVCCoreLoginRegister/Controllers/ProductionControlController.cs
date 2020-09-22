@@ -111,7 +111,7 @@ namespace MVCCoreLoginRegister.Controllers
                 em.Result = Result;
                 em.SampleSize = SampleSize;
                 em.TestType = TestType;
-
+                em.LogFile = true;
                 _context.TblFunctionalTest.Add(em);
                 _context.SaveChanges();
                 return Json("Success to save");

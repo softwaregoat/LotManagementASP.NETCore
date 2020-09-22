@@ -327,11 +327,8 @@
                                 $(test_type).empty();
                                 $(test_type).html(items);
                             });
-                            toastr.success('Success to load TestType');
                         }
-                        else {
-                            toastr.error(response);
-                        }
+                        
                     }
                 }).done(function () {
                     $.ajax({
@@ -369,9 +366,7 @@
                                     $($(tr).find('.save')).prop("disabled", true);
                                     $($(tr).find('.log')).prop("disabled", true);
                                 }
-                                toastr.success("Success for LineClearance");
                             }
-                            else toastr.error(response);
                         }
                     });
                 });
@@ -440,11 +435,7 @@
                     },
                     success: function (response) {
                         if (response != 'Failed') {
-                            toastr.success('Success to save');
                             window.location.href = "/Home/JobBagOverview";
-                        }
-                        else {
-                            toastr.error(response);
                         }
                     }
                 });

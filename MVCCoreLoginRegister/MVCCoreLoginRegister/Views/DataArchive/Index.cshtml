@@ -30,7 +30,7 @@
 </div>
 <br />
 <div class="row">
-    <h3 id="title">Achieve Query</h3>
+    <h3 id="title"></h3>
     <br />
     <table class="table table-bordered table-hover">
         <thead>
@@ -41,6 +41,8 @@
 </div>
 @section Scripts {
     <script>
+import { Toast } from "../../wwwroot/lib/bootstrap/dist/js/bootstrap.bundle";
+
         $(document).ready(function () {
             $.ajax({
                 type: "POST",
@@ -85,6 +87,10 @@
                 });
             });
             $('#data-query').change(function () {
+                if ($('#Lot').val() == 'Select Lot') {
+                    toastr.error('Please select a Lot');
+                    return;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/DataArchive/DataQuery",
@@ -108,8 +114,8 @@
                                 var em = response[i];
                                 var tr = '<tr>';
                                 var vals = Object.values(em);
-                                for (var i = 0; i < vals.length; i++) {
-                                    tr += '<td>' + vals[i] + '</td>';
+                                for (var j = 0; j < vals.length; j++) {
+                                    tr += '<td>' + vals[j] + '</td>';
                                 }
                                 tr += '</tr>';
                                 tbody += tr;

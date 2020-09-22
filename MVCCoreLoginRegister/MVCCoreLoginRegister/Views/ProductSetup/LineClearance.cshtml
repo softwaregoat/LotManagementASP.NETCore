@@ -211,7 +211,6 @@
                                 let tr = trs[i];
                                 $($(tr).find('.log')).prop('checked', em.logFile);
                                 $($(tr).find('.log')).prop("disabled", true);
-
                                 $($(tr).find('.date-time')).val(em.lctimeStamp);
                                 $($(tr).find('.date-time')).prop("disabled", true);
                                 $($(tr).find('.tech-rfid')).val(em.techRfid);
@@ -317,7 +316,6 @@
                         if (response != 'Failed') {
                             window.location.href = "/Home/JobBagOverview";
                         }
-                        else toastr.error(response);
                     }
                 })
 
