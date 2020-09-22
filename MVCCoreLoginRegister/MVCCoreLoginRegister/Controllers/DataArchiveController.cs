@@ -48,53 +48,43 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
         [HttpPost]
-        public IActionResult DataQuery(int Query)
+        public IActionResult DataQuery(int Query, string Lot)
         {
             switch (Query)
             {
                 case 1:
-                    return QryLineClearance();
+                    return QryLineClearance(Lot);
                 case 2:
-                    return QryAuthorisation();
+                    return QryAuthorisation(Lot);
                 case 3:
-                    return QryProductCheckPoint();
+                    return QryProductCheckPoint(Lot);
                 case 4:
-                    return QryMaterial();
+                    return QryMaterial(Lot);
                 case 5:
-                    return QryQuality();
+                    return QryQuality(Lot);
                 case 6:
-                    return QryCavitation();
+                    return QryCavitation(Lot);
                 case 7:
-                    return QryMachine();
+                    return QryMachine(Lot);
                 case 8:
-                    return QryFunctional();
+                    return QryFunctional(Lot);
                 default:
                     break;
             }
             return Json("Failed");
         }
-        public IActionResult QryLineClearance()
+        public IActionResult QryLineClearance(string Lot)
         {
-            var ems = _context.QryLineClearanceRecords.ToList();
+            var ems = _context.QryLineClearanceRecords.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
             }
             return Json("Failed");
         }
-        public IActionResult QryAuthorisation()
+        public IActionResult QryAuthorisation(string Lot)
         {
-            var ems = _context.QryAuthorisationToRunRecords.ToList();
-            if (ems != null)
-            {
-                return Json(ems);
-            }
-            return Json("Failed");
-        }
-
-        public IActionResult QryProductCheckPoint()
-        {
-            var ems = _context.QryProductCheckPointData.ToList();
+            var ems = _context.QryAuthorisationToRunRecords.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
@@ -102,9 +92,9 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
 
-        public IActionResult QryMaterial()
+        public IActionResult QryProductCheckPoint(string Lot)
         {
-            var ems = _context.QryMaterialTraceabilityData.ToList();
+            var ems = _context.QryProductCheckPointData.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
@@ -112,9 +102,9 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
 
-        public IActionResult QryQuality()
+        public IActionResult QryMaterial(string Lot)
         {
-            var ems = _context.QryQualityRecords.ToList();
+            var ems = _context.QryMaterialTraceabilityData.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
@@ -122,9 +112,9 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
 
-        public IActionResult QryCavitation()
+        public IActionResult QryQuality(string Lot)
         {
-            var ems = _context.QryActiveCavitationRecords.ToList();
+            var ems = _context.QryQualityRecords.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
@@ -132,9 +122,9 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
 
-        public IActionResult QryMachine()
+        public IActionResult QryCavitation(string Lot)
         {
-            var ems = _context.QryMachineDowntimeRecords.ToList();
+            var ems = _context.QryActiveCavitationRecords.Where(e => e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);
@@ -142,9 +132,19 @@ namespace MVCCoreLoginRegister.Controllers
             return Json("Failed");
         }
 
-        public IActionResult QryFunctional()
+        public IActionResult QryMachine(string Lot)
         {
-            var ems = _context.QryFunctionalTestRecords.ToList();
+            var ems = _context.QryMachineDowntimeRecords.Where(e => e.LotName == Lot);
+            if (ems != null)
+            {
+                return Json(ems);
+            }
+            return Json("Failed");
+        }
+
+        public IActionResult QryFunctional(string Lot)
+        {
+            var ems = _context.QryFunctionalTestRecords.Where(e=>e.LotName == Lot);
             if (ems != null)
             {
                 return Json(ems);

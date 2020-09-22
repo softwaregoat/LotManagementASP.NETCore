@@ -41,8 +41,6 @@
 </div>
 @section Scripts {
     <script>
-import { Toast } from "../../wwwroot/lib/bootstrap/dist/js/bootstrap.bundle";
-
         $(document).ready(function () {
             $.ajax({
                 type: "POST",
@@ -94,7 +92,10 @@ import { Toast } from "../../wwwroot/lib/bootstrap/dist/js/bootstrap.bundle";
                 $.ajax({
                     type: "POST",
                     url: "/DataArchive/DataQuery",
-                    data: { 'Query': $('#data-query').val() },
+                    data: {
+                        'Query': $('#data-query').val(),
+                        'Lot': $('#Lot option:selected').text()
+                    },
                     success: function (response) {
                         if (response != 'Failed') {
                             $('#title').text($('#data-query option:selected').text());
