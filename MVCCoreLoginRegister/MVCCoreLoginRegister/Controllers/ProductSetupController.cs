@@ -120,6 +120,7 @@ namespace MVCCoreLoginRegister.Controllers
                 em.MlctimeStamp = Convert.ToDateTime(Mlctimestamp);
                 em.LotName = LotName;
                 em.Des = Des;
+                em.LogFile = true;
                 _context.TblMaterialLotControl.Add(em);
                 _context.SaveChanges();
                 return Json("Success to save");

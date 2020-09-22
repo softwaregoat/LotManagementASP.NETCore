@@ -51,6 +51,7 @@ namespace MVCCoreLoginRegister.Controllers
                 em.LotName = LotName;
                 em.PcptimeStamp = Convert.ToDateTime(PcptimeStamp);
                 em.LotName = LotName;
+                em.LogFile = true;
 
                 _context.TblProductCheckPoint.Add(em);
                 _context.SaveChanges();

@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using MVCCoreLoginRegister.Data;
 
 namespace MVCCoreLoginRegister.Controllers
 {
     public class SupportingDocController : Controller
     {
+        JobBagContext _context = new JobBagContext();
         // GET: SupportingDocController
         public ActionResult ProductDrawing()
         {
@@ -24,73 +26,15 @@ namespace MVCCoreLoginRegister.Controllers
         {
             return View();
         }
-        // GET: SupportingDocController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: SupportingDocController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SupportingDocController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult ProductDrawing(string Product)
         {
-            try
+            var em = _context.TblProduct.SingleOrDefault(em => em.ProductName == Product);
+            if (em!=null)
             {
-                return RedirectToAction(nameof(Index));
+                return Json(em);
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SupportingDocController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: SupportingDocController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: SupportingDocController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: SupportingDocController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Json("Failed");
         }
     }
 }

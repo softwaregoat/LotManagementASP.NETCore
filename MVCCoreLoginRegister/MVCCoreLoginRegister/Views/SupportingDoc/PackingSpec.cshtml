@@ -15,7 +15,7 @@
 </div>
 <br />
 <div class="row">
-    <iframe src="/pdf/test.pdf#zoom=80" type="application/pdf" style="width: 100%;height: 600px;"></iframe>
+    <iframe src="" type="application/pdf" style="width: 100%;height: 600px;"></iframe>
 </div>
 
 @section Scripts {
@@ -23,6 +23,19 @@
         $(document).ready(function () {
             let product = getCookie('ProductName');
             $('#product').val(product);
+            $.ajax({
+                type: "POST",
+                url: "/SupportingDoc/ProductDrawing",
+                data: {
+                    Product: ProductName
+                },
+                success: function (response) {
+                    if (response != 'Failed') {
+                        var pdf = response.ps;
+                        $('iframe').attr('src', '/pdf/PS/' + pdf + '#zoom=100');
+                    }
+                }
+            });
             var timer2 = "0:30";
             timerDown(timer2, "/Home/JobBagOverview");
         });

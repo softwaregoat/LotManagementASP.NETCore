@@ -204,6 +204,10 @@
                             for (var i = 0; i < response.length; i++) {
                                 var em = response[i];
                                 let tr = trs[i];
+
+                                $($(tr).find('.lot-update')).prop('checked', em.logFile);
+                                $($(tr).find('.lot-update')).prop("disabled", true);
+
                                 $($(tr).find('.date-time')).val(em.mlctimeStamp);
                                 $($(tr).find('.date-time')).prop("disabled", true);
                                 $($(tr).find('.carton-no')).val(em.cartonNo);
@@ -220,9 +224,7 @@
                                 $($(tr).find('.lot-update')).prop("disabled", true);
                                 $($(tr).find('.save')).prop("disabled", true);
                             }
-                            toastr.success("Success for LineClearance");
                         }
-                        else toastr.error(response);
                     }
                 });
             $('input.lot-update').click(function () {

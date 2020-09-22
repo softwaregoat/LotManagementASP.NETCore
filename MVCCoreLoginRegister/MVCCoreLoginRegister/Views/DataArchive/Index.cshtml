@@ -30,7 +30,7 @@
 </div>
 <br />
 <div class="row">
-    <h3>Achieve Query</h3>
+    <h3 id="title">Achieve Query</h3>
     <br />
     <table class="table table-bordered table-hover">
         <thead>
@@ -54,10 +54,6 @@
                             items += "<option value='" + em.lotId + "'>" + em.lotName + "</option>";
                         }
                         $('#Lot').html(items);
-                        toastr.success("Success for Lot");
-                    }
-                    else {
-                        toastr.error('Failed for Lot');
                     }
                 }
             });
@@ -73,10 +69,6 @@
                             items += "<option value='" + em.dataArchiveQueryId + "'>" + em.dataArchiveQuery + "</option>";
                         }
                         $('#data-query').html(items);
-                        toastr.success("Success for Data Archive Query");
-                    }
-                    else {
-                        toastr.error('Failed for  Data Archive Query');
                     }
                 }
             });
@@ -88,10 +80,6 @@
                     success: function (response) {
                         if (response != 'Failed') {
                             $('#DES').val(response.productName);
-                            toastr.success("Success for Product Description");
-                        }
-                        else {
-                            toastr.error('Failed for  Product Description');
                         }
                     }
                 });
@@ -103,6 +91,7 @@
                     data: { 'Query': $('#data-query').val() },
                     success: function (response) {
                         if (response != 'Failed') {
+                            $('#title').text($('#data-query option:selected').text());
                             $('thead').empty();
                             var header = '';
                             if (response.length > 0) {
@@ -126,10 +115,6 @@
                                 tbody += tr;
                             }
                             $('tbody').html(tbody);
-                            toastr.success("Success for " + $('#data-query option:selected').text());
-                        }
-                        else {
-                            toastr.error('Failed for ' + $('#data-query option:selected').text());
                         }
                     }
                 });

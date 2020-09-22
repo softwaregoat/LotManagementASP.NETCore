@@ -345,6 +345,9 @@
                                     var em = response[i];
                                     let tr = trs[i];
 
+                                    $($(tr).find('.log')).prop('checked', em.logFile);
+                                    $($(tr).find('.log')).prop("disabled", true);
+
                                     $($(tr).find('.date-time')).val(em.fttimeStamp);
                                     $($(tr).find('.date-time')).prop("disabled", true);
 

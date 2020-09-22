@@ -208,6 +208,10 @@
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
                             let tr = trs[i];
+
+                            $($(tr).find('.log')).prop('checked', em.logFile);
+                            $($(tr).find('.log')).prop("disabled", true);
+
                             $($(tr).find('.date-time')).val(em.atrtimeStamp);
                             $($(tr).find('.date-time')).prop("disabled", true);
                             $($(tr).find('.tech-rfid')).val(em.techRfid);
@@ -223,9 +227,7 @@
                             $($(tr).find('.log')).prop("disabled", true);
 
                         }
-                        toastr.success("Success for AuthorisationToRun");
                     }
-                    else toastr.error(response);
                 }
             });
 

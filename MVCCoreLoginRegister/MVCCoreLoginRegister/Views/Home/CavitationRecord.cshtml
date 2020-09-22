@@ -674,7 +674,6 @@
                         }
                         c = c.replace('Cavity ', '');
                         c = parseInt(c);
-                        //string LotName, string PcptimeStamp, string Cav, int CavityId, string Observation, string Action
                         let temp = {
                             LotName: Lot,
                             PcptimeStamp: checkpoint,
@@ -697,9 +696,9 @@
                             toastr.success("Success to save Quality Record");
                         }
                         else toastr.error(response);
+                        window.history.back();
                     }
                 });
-                window.history.back();
             });
 
             var timer2 = "0:30";
