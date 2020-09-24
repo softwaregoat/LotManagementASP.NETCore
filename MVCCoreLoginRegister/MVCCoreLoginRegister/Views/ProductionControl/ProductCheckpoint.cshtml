@@ -888,6 +888,7 @@
                     success: function (response) {
                         if (response != 'Failed') {
                             if (v < response.cav) {
+                                setCookie('ActiveCav', v, 1);
                                 window.location.href = "/Home/CavitationRecord";
                             }
                             if (v > response.cav) {
@@ -952,6 +953,10 @@
                 }
                 else {
                     running = false;
+                }
+                if (Lot == '' || Lot == undefined) {
+                    toastr.warning('Lot is empty.');
+                    return;
                 }
                 $.ajax({
                     type: "POST",

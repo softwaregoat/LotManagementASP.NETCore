@@ -198,7 +198,6 @@
             let Machine = getCookie('Machine');
             let Lot = getCookie('Lot');
             $('#Lot').val(Lot);
-            
             $.ajax({
                     type: "POST",
                     url: "/ProductSetup/LineClearance",
@@ -301,11 +300,15 @@
                     toastr.warning('Second Username is empty.');
                     return;
                 }
+                if (Lot == '' || Lot == undefined) {
+                    toastr.warning('Lot is empty.');
+                    return;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/ProductSetup/SaveLineClearance",
                     data: {
-                        'LotName': $('#Lot').val(),
+                        'LotName': Lot,
                         'LCTimeStamp': LCTimeStamp,
                         'TechRFID': TechRFID,
                         'TechUsername': TechUsername,

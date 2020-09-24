@@ -73,6 +73,8 @@
                 }
             });
             $('#Lot').change(function () {
+                $('#DES').val('');
+                $('#data-query option:selected').text('Select Data Query')
                 $.ajax({
                     type: "POST",
                     url: "/DataArchive/QryLot",

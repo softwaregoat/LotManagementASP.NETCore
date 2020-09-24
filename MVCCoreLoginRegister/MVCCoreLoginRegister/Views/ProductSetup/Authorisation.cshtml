@@ -304,6 +304,10 @@
                     toastr.warning('Second Username is empty.');
                     return;
                 }
+                if (Lot == '' || Lot == undefined) {
+                    toastr.warning('Lot is empty.');
+                    return;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/ProductSetup/SaveAuthorisationToRun",

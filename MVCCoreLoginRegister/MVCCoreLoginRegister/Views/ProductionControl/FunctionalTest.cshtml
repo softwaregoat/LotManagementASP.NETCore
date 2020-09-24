@@ -419,6 +419,10 @@
                     toastr.warning('Comment is empty.');
                     return;
                 }
+                if (Lot == '' || Lot == undefined) {
+                    toastr.warning('Lot is empty.');
+                    return;
+                }
                 $.ajax({
                     type: "POST",
                     url: "/ProductionControl/SaveFunctionalTest",

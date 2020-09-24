@@ -61,6 +61,23 @@ function deleteAllCookies() {
 }
 $(document).ready(function () {
     $('#logout').click(function () {
+        var username = getCookie('Username');
         deleteAllCookies();
+        setCookie('Username', username, 1);
+    });
+    
+    
+    $('.dropdown-menu a').click(function (e) {
+        let Lot = getCookie('Lot');
+        if (Lot == '' || Lot == undefined) {
+            let txt = $(this).text();
+            if (txt == 'Line Clearance' || txt == 'Authorisation To Run' || txt == 'Material Lot Control' ||
+                txt == 'Product Checkpoint' || txt == 'Functional Test' ||
+                txt == 'Product Drawing' || txt == 'Product Quality Information Sheet' ||
+                txt == 'Packing Specification' || txt == 'Product Checkpoint') {
+                e.preventDefault();
+                return;
+            }
+        }
     });
 });

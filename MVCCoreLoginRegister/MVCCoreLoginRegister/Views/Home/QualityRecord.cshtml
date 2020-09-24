@@ -584,6 +584,7 @@
             });
             $('#save').click(function () {
                 let data = [];
+                let totalCa = 0;
                 $('.defect').each(function (i, em) {
                     if ($(this).prop('checked')) {
                         let tr = $(this).closest('tr');
@@ -602,6 +603,7 @@
                         }
                         c = c.replace('Cavity ', '');
                         c = parseInt(c);
+                        totalCa += c;
                         //string LotName, string PcptimeStamp, string Cav, int CavityId, string Observation, string Action
                         let temp = {
                             LotName: Lot,
@@ -614,6 +616,17 @@
                         data[i] = temp;
                     }
                 });
+                if (data.length == 0) {
+                    return;
+                }
+                let ActiveCav = getCookie('ActiveCav');
+                if (ActiveCav != null || ActiveCav != undefined) {
+                    ActiveCav = parseInt(ActiveCav);
+                    if (totalCa != parseInt(cavitation) - ActiveCav) {
+                        toastr.error('Cavities is not equal to');
+                        return;
+                    }
+                }
                 $.ajax({
                     type: "POST",
                     url: "/Home/SaveQualityRecord",
