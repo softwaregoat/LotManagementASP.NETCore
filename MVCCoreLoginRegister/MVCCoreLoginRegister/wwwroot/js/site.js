@@ -18,10 +18,6 @@ function timerDown(timer2, url = '') {
                 $('#logout').click();
                 return;
             }
-            if (url == '/ProductionControl/ProductCheckpoint') {
-                window.history.back();
-                return;
-            }
             if (url != '') window.location.href = url
         }
     }, 1000);

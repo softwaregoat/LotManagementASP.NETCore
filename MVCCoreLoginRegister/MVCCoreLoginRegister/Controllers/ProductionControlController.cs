@@ -50,7 +50,6 @@ namespace MVCCoreLoginRegister.Controllers
                 em.Rejects = Rejects;
                 em.LotName = LotName;
                 em.PcptimeStamp = Convert.ToDateTime(PcptimeStamp);
-                em.LotName = LotName;
                 em.LogFile = true;
 
                 _context.TblProductCheckPoint.Add(em);

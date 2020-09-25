@@ -693,7 +693,7 @@
                 let ActiveCav = getCookie('ActiveCav');
                 if (ActiveCav != null || ActiveCav != undefined) {
                     ActiveCav = parseInt(ActiveCav);
-                    if (totalCa != parseInt(cavitation) - ActiveCav) {
+                    if (data.length != parseInt(cavitation) - ActiveCav) {
                         toastr.error('Cavities is not equal to');
                         return;
                     }    

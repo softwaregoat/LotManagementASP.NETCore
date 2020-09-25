@@ -75,6 +75,9 @@
             $('#Lot').change(function () {
                 $('#DES').val('');
                 $('#data-query option:selected').text('Select Data Query')
+                $('thead').empty();
+                $('tbody').empty();
+                $('#title').text('');
                 $.ajax({
                     type: "POST",
                     url: "/DataArchive/QryLot",

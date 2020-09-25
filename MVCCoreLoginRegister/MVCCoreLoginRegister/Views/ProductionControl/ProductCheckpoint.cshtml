@@ -767,7 +767,13 @@
                         for (var i = 0; i < response.length; i++) {
                             var em = response[i];
 
-                            let cp = em.checkPoint.value.hours + ':00';
+                            let cp = em.checkPoint.value.hours;
+                            if (cp > 9) {
+                                cp = cp + ':00';
+                            } else {
+                                cp = '0' + cp + ':00';
+                            }
+                            
                             let tr = $("label:contains('" + cp + "')").closest('tr');
 
                             $($(tr).find('.lot-update')).prop('checked', em.logFile);
@@ -958,6 +964,8 @@
                     toastr.warning('Lot is empty.');
                     return;
                 }
+                //int CartonNo, string Des, string Product, string CheckPoint, bool McRunning, int ActiveCavities,
+                //string LotName, decimal ShotWeight, int CycleCount, bool Rejects, string PcptimeStamp
                 $.ajax({
                     type: "POST",
                     url: "/ProductionControl/SaveProductCheckPoint",
